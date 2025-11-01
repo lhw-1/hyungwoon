@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyungwoon Lee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Georgia', 'Palatino', serif;
+            background-color: #ffffff;
+            color: #8B7355;
+            line-height: 1.7;
+            padding-top: 70px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #D4C4B0;
+            border-bottom: 1px solid #b6a187;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #D4C4B0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: #5D4A37;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6B5744;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #D4C4B0;
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        .profile-picture {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #D4C4B0;
+            margin-left: 40px;
+            flex-shrink: 0;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: #6B5744;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #9B8570;
+            margin-bottom: 20px;
+        }
+
+        .contact-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .contact-links a {
+            color: #8B7355;
+            font-size: 1.5em;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        .contact-links a:hover {
+            color: #6B5744;
+            transform: translateY(-2px);
+        }
+
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 90px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #6B5744;
+            border-bottom: 1px solid #E8DED0;
+            padding-bottom: 10px;
+        }
+
+        .bio {
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .research-item, .project-item, .publication-item {
+            margin-bottom: 25px;
+        }
+
+        .project-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .project-image {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #D4C4B0;
+            flex-shrink: 0;
+        }
+
+        .project-content {
+            flex: 1;
+        }
+
+        .item-title {
+            font-weight: 600;
+            color: #6B5744;
+            margin-bottom: 5px;
+        }
+
+        .item-meta {
+            font-style: italic;
+            color: #A08770;
+            font-size: 0.95em;
+            margin-bottom: 8px;
+        }
+
+        .item-description {
+            margin-top: 0px;
+            padding-top: 0px !important;
+            padding-bottom: 0px;           
+        }
+
+        .item-description-top {
+            margin-top: 0px;
+        }
+
+        .publication-item a, .project-item a, .bio a, .item-description a, .item-description-top a {
+            color: #8B7355;
+            text-decoration: none;
+            border-bottom: 1px solid #D4C4B0;
+        }
+
+        .publication-item a:hover, .project-item a:hover {
+            border-bottom: 1px solid #8B7355;
+        }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #D4C4B0;
+            text-align: center;
+            font-size: 0.9em;
+            color: #A08770;
+        }
+
+        /* Custom Accordion Styles */
+        .accordion-button {
+            font-weight: 600;
+            background-color: #8B7355;
+            color: #fff7ed;
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            transition: 0.3s;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        .accordion-button:hover {
+            background-color: #6B5744;
+        }
+
+        .accordion-button.active {
+            background-color: #6B5744;
+        }
+
+        .accordion-button:after {
+            content: '\002B';
+            color: white;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .accordion-button.active:after {
+            content: "\2212";
+        }
+
+        .accordion-content {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f9f9f9;
+        }
+
+        .accordion-content p {
+            padding: 15px 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                gap: 20px;
+                font-size: 0.9em;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            header {
+                flex-direction: column-reverse;
+                align-items: center;
+                text-align: center;
+            }
+
+            .header-content {
+                margin-top: 20px;
+            }
+
+            .profile-picture {
+                margin-left: 0;
+                width: 150px;
+                height: 150px;
+            }
+
+            .contact-links {
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <span title="This is Frenny! A mascot character I drew in 2021 for one of my first ever web development projects... and it just stuck around as a profile logo since then."><img src="assets/frenny.jpg" alt="Frenny" class="nav-logo"></span>
+            <div class="nav-links">
+                <a href="#about">About Me!</a>
+                <a href="#research">Research Interests</a>
+                <a href="#projects">Projects</a>
+                <a href="#publications">Publications</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Hyungwoon Lee</h1>
+                <p class="subtitle">HCI, AI & Psychology Researcher | National University of Singapore (NUS)</p>
+                <div class="contact-links">
+                    <a href="mailto:leehw@ahlab.org" title="My Email - leehw@ahlab.org">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <!-- <a href="https://scholar.google.com/..." target="_blank" title="Google Scholar">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a> -->
+                    <a href="https://github.com/lhw-1" target="_blank" title="My GitHub - @lhw-1">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <!-- <a href="https://linkedin.com/..." target="_blank" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/..." target="_blank" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a> -->
+                </div>
+            </div>
+            <span title="This picture was taken in Stockholm, Sweden during my visit in late 2025 after UbiComp '25 was held in Espoo, Finland. Credits to Prof. Rick Glassey at KTH for helping me take this photograph :D"><img src="assets/hyungwoon.PNG" alt="Profile Picture" class="profile-picture"></span>
+        </header>
+
+        <section id="about">
+            <h2>About Me!</h2>
+            <p class="bio">
+                Heyo! My name is <strong>Hyungwoon</strong>, though people just call me <strong>Hyung</strong>, usually :)
+            </p>
+            <p class="bio">
+                My undergraduate studies were at the <a href="https://www.nus.edu.sg/" target="_blank">National University of Singapore (NUS)</a>, in <strong>Computer Science</strong> and <strong>Psychology</strong>, with an emphasis on <strong>machine learning and AI</strong>, as well as <strong>clinical and cognitive psychology</strong>. 
+            </p>
+            <p class="bio">
+                I have previously been a research assistant at the <a href="https://ahlab.org" target="_blank">Augmented Human Lab</a> @ NUS, advised by Prof. <a href="https://www.comp.nus.edu.sg/cs/people/suranga/" target="_blank">Suranga Nanayakkara</a>, where I worked on <strong>affective computing</strong> and <strong>assistive augmentation</strong> projects. I have also worked with the <a href="https://www.keanjhsu.com" target="_blank">Clinical Translational Sciences Lab</a> @ NUS under Prof. <a href="https://fass.nus.edu.sg/psy/people/kean-hsu/" target="_blank">Kean Hsu</a>, where I assisted with various behavioral task programming, eye-tracking configurations, and helping with writing research protocols. I have also been heavily involved with <em>CS1101S: Programming Methodology</em>, taught by Prof. <a href="https://www.comp.nus.edu.sg/cs/people/henz/" target="_blank">Martin Henz</a>. During my candidature, I was active as both a senior undergraduate tutor and a senior developer as part of the leadership team for <a href="https://sourceacademy.nus.edu.sg/" target="_blank">Source Academy</a>, a web-based learning platform developed and maintained by NUS students for CS1101S.
+            </p>
+            <p class="bio">
+                I am currently working as a research engineer at the <a href="https://ahlab.org/people/hyung-woon-lee/" target="_blank">Augmented Human Lab</a>. My research work focuses on the development of <strong>context-aware, multimodal cognitive augmentation systems</strong> that makes use of physiological biosensing and biofeedback in order to augment <strong>learning</strong> and <strong>memory</strong>, particularly in the domain of education. My background in machine learning and AI, psychology, and Human-Computer Interaction (HCI) provides me with a unique perspective and skillset to build <strong>Human-centred AI systems</strong> that align with theories drawn from cognitive sciences, psychology, and interaction design.
+            </p>
+        </section>
+
+        <section id="research">
+            <h2>Research Interests</h2>
+
+            <div class="research-item ">
+                <button class="accordion-button">Cognitive Sciences, Psychology, and Education</button>
+                <div class="accordion-content">
+                    <p class="item-description-top">
+                        When I first entered university, my career aspirations were actually in education and teaching - and I got into research after finding out that you'd likely need a Ph.D. to become a lecturer. What I didn't know was that I would end up enjoying research and completely shift my career aspirations! I still enjoy teaching quite a bit, and I have served as an undergraduate tutor since my 2nd year in NUS, until graduation. CS1101S in particular was a large part of that enjoyment, having taught it in 4 separate semesters as an avenger (our codename for undergraduate tutor) and later a reflection tutor, a position usually reserved for graduate students.
+                    </p>
+                    <p class="item-description">
+                        In my 2nd year, I converted my psychology minor (which was initially taken out of pure interest) into a double major, and started looking into clinical psychology specifically. However, after working with Prof. Kean Hsu in his CTS lab, which focused heavily on the impact of cognitive processes and biases on mental health, I realized that what really interested me was that cognitive aspect of psychology. When Prof. Suranga Nanayakkara formed his <a href="https://chill.nus.edu.sg/" target="_blank">Centre for Holistic Inquiry into Lifelong Learning (CHILL)</a>, I started working with the centre on learning-related projects such as <a href="#projects">iLEMS</a> and my <a href="#projects">final year project on acute cognitive stress detection</a>. Over time, I have concretized my interest in <strong>cognitive sciences and psychology</strong>, with an emphasis towards theories on <strong>learning, memory, and mental models</strong> - and incorporating this knowledge into building impactful systems that align with the theory.
+                    </p>
+                </div>
+            </div>
+
+            <div class="research-item ">
+                <button class="accordion-button">HCI and Cognitive Augmentation</button>
+                <div class="accordion-content">
+                    <p class="item-description-top">
+                        Working with Prof. Suranga's AH Lab has been a blessing on my research journey - I was able to work with interdisciplinary experts from various domains such as information systems, interaction design, assistive technology, virtual reality, sensors and haptics, signal processing, machine learning, affective psychology, drone systems, communications and new media, UI/UX design, embedded systems, education pedagogy, clinical psychology... you get the idea. It has been, and continues to be, a real haven for new interdisciplinary research ideas to be generated. My love for bridging fields together to generate interdisciplinary insights have thus thrived within the field of HCI, and I suspect that this will not change for some time. 
+                    </p>
+                    <p class="item-description">
+                        In particular, the HCI paradigm of <strong>augmentation technology</strong> has influenced me quite a bit. The idea of designing and developing technology that can assist, enhance, or amplify human capabilities has been the core drive behind technological progress in history, and I am happy to contribute towards augmentation technology that addresses human cognitive capabilities - especially in terms of learning and memory. What I want to work on in the future is, by combining my technical skills with my theoretical knowledge, build impactful and lasting systems that can easily be integrated into our daily lives while extending our cognitive mind and capabilities.
+                    </p>
+                </div>
+            </div>
+
+            <div class="research-item ">
+                <button class="accordion-button">Machine Learning and AI</button>
+                <div class="accordion-content">
+                    <p class="item-description-top">
+                        I was always interested in the idea of "learning" from the perspective of a learner and an educator. However, when I started my undergraduate studies in NUS, I was exposed early to machine learning and AI as a field, which was when I realized the potential of looking at "learning" from a mathematical, statistical perspective as well. Many of my earlier research projects (which would later spark my love for research) made use of machine learning and AI, and over time, I realized I like thinking about the problem formulation aspect of machine learning and AI; for instance, during my <a href="#projects">student program classification project</a> with Prof. Martin Henz, the most exciting part was formulating the student program into a representation and selecting the appropriate machine learning model and architecture, such that the different output categories of student program would align with what we hypothesised as different kinds of thinking processes that the students go through when programming.
+                    </p>
+                    <p class="item-description">
+                        Having worked with a diverse range of ML and AI techniques such as regression models, tree-based models and SVMs, deep learning for computer vision (CV) and natural language processing (NLP), reinforcement learning (RL), self-supervised learning (SSL), as well as encoders and transformer architectures (and of course Large Language Models (LLMs)), I now have a better intuition for selecting and constructing the appropriate model architectures for given problems. What I would like to do is to apply this intuition towards building <strong>context-aware multimodal AI</strong> pipelines that can be incorporated into cognitive augmentation systems.
+                    </p>
+                </div>
+            </div>
+
+            <div class="research-item ">
+                <button class="accordion-button">Biosensing and Signal Processing</button>
+                <div class="accordion-content">
+                    <p class="item-description-top">
+                        Signal processing was not my initial focus, but it was always something close to heart by way of music. I had dabbled in digital compositions since secondary school - and I only started looking into it as part of my research interests when I had to work with human biosignal data. Some of my early projects in the AH Lab were on voice acoustics, which introduced me to signal processing as a discipline. However, I credit CS4347: Sound and Music Computing course taught by Prof. <a href="https://www.comp.nus.edu.sg/cs/people/wangye/" target="_blank">Wang Ye</a> as the catalyst that really got me into signal processing, with his intuitive explanations on concepts such as signal decomposition or chord recognition. 
+                    </p>
+                    <p class="item-description">
+                        Many of my projects have involved signal processing on sensor data; I have worked with sensors such as electroencephalography (EEG) for brain waves, photoplethysmogram (PPG) for blood volume pulse (BVP) which can infer heart rate variability (HRV) and blood oxygen saturation (SpO2), electrodermal activity (EDA) sensors for skin conductance, temperature sensors, and eye trackers. I have also worked with voice acoustics, respiratory rate, facial expressions & gestures, and other behavioral data (e.g. keyboard and mouse use). With (varying degrees of) experience in these signals and sensors, I would really like to make use of this knowledge in building the sensing and biofeedback mechanisms for cognitive augmentation systems.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="projects">
+            <h2>Selected Projects</h2>
+            <div class="project-item">
+                <img src="assets/project-1.png" alt="Project 1" class="project-image">
+                <div class="project-content">
+                    <div class="item-title">Affect Recognition Project</div>
+                    <div class="item-meta">Role: Research Engineer @ AH Lab | Duration: Nov 2024 - Ongoing</div>
+                    <p class="item-description">
+                        This project is in collaboration with an industry partner, and aims to build an affect recognition model with state-of-the-Arts AI architecture. The model will be integrated into various wrist-worn / HMD wearable devices for affect-aware recommendation systems. We have a <a href="#publications">workshop paper for NeurIPS '25</a> to be presented later this year!
+                    </p>
+                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="assets/project-2.png" alt="Project 1" class="project-image">
+                <div class="project-content">
+                    <div class="item-title">ProctorX</div>
+                    <div class="item-meta">Role: Research Engineer @ CHILL | Duration: Sept 2024 - Jul 2025</div>
+                    <p class="item-description">
+                        This project was in collaboration with NUS Centre for Teaching, Learning and Technology (CTLT). We built an AI-driven platform that can detect and flag the use of prohibited applications during open internet examinations. Video recordings and keyboard/mouse data are used by the platform to estimate the likelihood of prohibited applications being used - a surprisingly non-trivial task!
+                    </p>
+                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="assets/project-3.jpg" alt="Project 2" class="project-image">
+                <div class="project-content">
+                    <div class="item-title">Acute Cognitive Stress Detection</div>
+                    <div class="item-meta">Role: Final Year Student (4th Year) @ NUS | Duration: Aug 2024 - Apr 2025</div>
+                    <p class="item-description">
+                        This student research project focused on detection of acute cognitive stress that arises when students are working on mentally demanding tasks, especially when recalling information under pressure. Multimodal machine learning techniques were used alongside collected biosignal data (e.g. HRV, EDA, Temp) to build a binary classification model. This was a strenuous but exceptionally rewarding project, as I had to combine all that I'd learnt from both computer science and psychology - including research protocol design and data collection, as well as multimodal machine learning, fusion techniques, and signal processing. [Report available upon request]
+                    </p>
+                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="assets/project-4.jpg" alt="Project 1" class="project-image">
+                <div class="project-content">
+                    <div class="item-title"><a href="https://chill.nus.edu.sg/about/" target="_blank">Integrated Learning and Management System (iLEMS)</a></div>
+                    <div class="item-meta">Role: Research Engineer @ CHILL | Duration: Jul 2024 - Ongoing</div>
+                    <p class="item-description">
+                        This project was initiated under the NUS CHILL. The iLEMS system is a web-based platform that integrates both course metadata and student behavioral and cognitive state data collected during course time to analyze and present the learning and engagement levels of students over time, allowing for instructors to have a more holistic view of the classroom. The platform is still a work in progress under NUS CHILL.
+                    </p>
+                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="assets/project-5.png" alt="Project 1" class="project-image">
+                <div class="project-content">
+                    <div class="item-title"><a href="https://emplity.org" target="_blank">Emplity</a></div>
+                    <div class="item-title"></div>
+                    <div class="item-meta">Role: Chief Research Officer / Co-founder | Duration: Nov 2023 - Ongoing</div>
+                    <p class="item-description">
+                        Emplity is my third startup venture (and the first that actually took off) - we build AI-driven applications for mental health professionals in-training, such as AI Roleplay for Cognitive-behavioral Therapy (CBT) through audio / video chats, and AI review of case studies and transcripts - born out of my own pain points when I was a clinical psychology student. We are currently undergoing trials with institutes of higher learning and universities. (If this sounds interesting to you as a potential client, feel free to reach out!)
+                    </p>
+                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="assets/project-6.jpg" alt="Project 2" class="project-image">
+                <div class="project-content">
+                    <div class="item-title">Student Program Classification</div>
+                    <div class="item-meta">Role: Undergraduate Researcher (3rd Year) @ NUS | Duration: Aug 2023 - Apr 2024</div>
+                    <p class="item-description">
+                        This student research project focused on classifying student programs through low-level program traces extracted from abstract syntax trees (AST). Both standard machine learning models and LLMs were used to cluster programs based on these traces, and results were compared. The angle that we took was: student programs can be classified not based on paradigms or algorithms but by "algorithmic processes" - such as a recursive vs iterative process as defined by SICP, which we saw as different examples of students' ways of thinking while programming. [Report available upon request]
+                    </p>
+                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="assets/project-7.png" alt="Project 3" class="project-image">
+                <div class="project-content">
+                    <div class="item-title"><a href="https://markbind.org/" target="_blank">MarkBind</a></div>
+                    <div class="item-meta">Role: Senior Developer @ NUS | Duration: Jan 2023 - May 2025</div>
+                    <p class="item-description">
+                        MarkBind is a command-line tool that can help to generate dynamic websites from simple markdown text. Built and maintained by students of National University of Singapore (NUS). I began work on it as a junior developer in my 3rd year, and continued to work as a senior developer until graduation.
+                    </p>
+                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="assets/project-8.jpg" alt="Project 3" class="project-image">
+                <div class="project-content">
+                    <div class="item-title"><a href="https://www.ccsgp.comp.nus.edu.sg/robotic-dog-intern" target="_blank">Robot Guide Dog</a></div>
+                    <div class="item-meta">Role: Research Engineer Intern @ NUS AI Lab | Duration: May 2022 - Aug 2023</div>
+                    <p class="item-description">
+                        This was part of an ongoing research project to build a navigation algorithm for a robotic guide dog in unseen environments, for the purpose of guiding visually impaired used. This project specifically focused on unseen navigation and stairs climbing.
+                    </p>
+                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="assets/project-9.jpg" alt="Project 3" class="project-image">
+                <div class="project-content">
+                    <div class="item-title"><a href="https://sourceacademy.nus.edu.sg/" target="_blank">Source Academy</a></div>
+                    <div class="item-meta">Role: Senior Developer @ NUS | Duration: Aug 2021 - May 2025</div>
+                    <p class="item-description">
+                        Source Academy is a web-based platform for interactive learning, designed around the Structure and Interpretation of Computer Programs (SICP) textbook, and used for the CS1101S: Programming Methodology I course. Built and maintained by students of National University of Singapore (NUS). I began work on it as a junior developer in my 2nd year, and continued to work as a senior developer until graduation.
+                    </p>
+                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
+                </div>
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2>Publications</h2>
+
+            <div class="publication-item">
+                <div class="item-title">(Under Submission) Bridging the Gulf of Endorsement: Enabling Automatic Endorsement of Cognitive Augmentation Systems.</div>
+                <div class="item-meta"><strong>Hyung Woon Lee</strong>, Dinithi Dissanayake, Dixon Prem Daniel Rajendran, Punyawee Anunpattana, Suranga Nanayakkara. <strong>ACM CHI 2026.</strong> (Submission Draft available upon request)</div>
+                <button class="accordion-button">Abstract</button>
+                <div class="accordion-content">
+                    <p class="item-description">
+                        The landscape of cognitive augmentation has recently shifted from theories towards real-life designs and implementations, especially with the emergence of Large Language Models. However, challenges persist in designing systems that truly extend human cognition rather than acting as simple assistants. Based on the term <em>Automatic Endorsement</em> introduced in the Extended Mind Thesis, we propose the concept of <em>Endorsement</em>, defined as the approval of a system by its user for a specific goal based on the useful properties it provides for achieving that goal, as an essential theoretical lens for understanding Human-AI Interaction in cognitive augmentation systems. We further propose the <em>Gulf of Endorsement</em> as a novel component of the interaction design framework. We analyze real-world systems to show how the design of cognitive augmentation systems affect endorsement, and make recommendations towards bridging the Gulf of Endorsement and developing next-generation cognitive augmentation systems that function as seamless extensions of human cognition. 
+                        <!-- <a href="#" target="_blank">[PDF]</a> <a href="#" target="_blank">[DOI]</a> -->
+                    </p>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="item-title">(Under Submission) Sensing and Responding to Internal User States: A Systematic Literature Review of User-Aware Adaptive Assistive Wearables.</div>
+                <div class="item-meta">Dinithi Dissanayake, <strong>Hyung Woon Lee</strong>, Moritz Alexander Messerschmidt, Yize Wei, Suranga Nanayakkara. <strong>ACM CHI 2026.</strong> (Submission Draft available upon request) </div>
+                <button class="accordion-button">Abstract</button>
+                <div class="accordion-content">
+                    <p class="item-description">
+                        Wearable technologies such as smartwatches and smart glasses are increasingly becoming a part of our everyday lives. For example, a smartwatch that senses a lapse in attention and responds with a subtle haptic vibration shows how wearables can assist as well as adapt to our internal states. Such adaptive feedback highlights the broader potential of wearables to offer the right amount of support at the right time. However, the HCI community still lacks a shared understanding of broader design insights on these emerging adaptive wearables. In this systematic review, we analyze a carefully selected corpus of 63 papers and propose a taxonomy of sensing modalities, adaptation triggers, and intervention strategies to consolidate these fragmented efforts. We examine how today's adaptive wearables operate, highlighting key design challenges and opportunities. Our findings offer practical guidance for designing wearable interactions that meaningfully adapt to users' needs, enhancing their abilities in daily life.
+                        <!-- <a href="#" target="_blank">[PDF]</a> <a href="#" target="_blank">[DOI]</a> -->
+                    </p>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="item-title">Don't Sleep on Sleep Data: Influence of Sleep Physiological Signals on Stress Detection.</div>
+                <div class="item-meta"> Soundarya Ramesh, Takahiro Masuda, <strong>Lee Hyung Woon</strong>, Yongquan Hu, Suranga Chandima Nanayakkara. <strong>NeurIPS TS4H Workshop 2025.</strong></div>
+                <button class="accordion-button">Abstract</button>
+                <div class="accordion-content">
+                    <p class="item-description">
+                        Stress is a critical determinant of both short-term well-being and long-term health.  While wearable sensors have enabled continuous monitoring of stress through physiological signals, existing approaches that rely only on <em>current physiology</em> have shown limited success. Prior work suggests that the <em>previous night's sleep</em> is predictive of stress, yet current methods typically use only <em>coarse sleep summaries</em> (e.g., duration, resting heart rate). In this paper, we argue that <em>fine-grained sleep physiological data</em> can provide richer insights for stress detection. We collect a month-long smartwatch dataset comprising both day-time and night-time physiological signals, including detailed sleep-derived features, and train two models -- XGBoost and a custom multi-modal neural network. Our results provide initial evidence that incorporating fine-grained sleep features significantly improves stress detection, opening up several promising directions for future research.
+                        <!-- <a href="#" target="_blank">[PDF]</a> <a href="#" target="_blank">[DOI]</a> -->
+                    </p>
+                </div>
+            </div>
+
+            <script>
+                // Accordion functionality
+                const accordionButtons = document.querySelectorAll('.accordion-button');
+                
+                accordionButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        this.classList.toggle('active');
+                        const content = this.nextElementSibling;
+                        
+                        if (content.style.maxHeight) {
+                            content.style.maxHeight = null;
+                        } else {
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                        }
+                    });
+                });
+            </script>
+        </section>
+
+        <footer>
+            <p>© 2025 - Hyungwoon Lee. Last updated: 1 Nov 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
