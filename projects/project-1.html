@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affect Recognition Project - Hyungwoon Lee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./project.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Back to Main
+            </a>
+            <span title="This is Frenny!"><img src="../assets/frenny.jpg" alt="Frenny" class="nav-logo"></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Project Header -->
+        <div class="project-header">
+            <img src="../assets/project-1.png" alt="Affect Recognition Project" class="project-image-large">
+            <div class="project-header-content">
+                <h1>Affect Recognition Project</h1>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <i class="fas fa-user-circle"></i>
+                        <span><strong>Role:</strong> Research Engineer (Data Analysis & Modeling)</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span><strong>Duration:</strong> Nov 2024 - Ongoing</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <i class="fas fa-building"></i>
+                        <span><strong>Organization:</strong> <a href="https://ahlab.org" target="_blank">Augmented Human Lab @ NUS</a></span>
+                    </div>
+                </div>
+                <div class="project-tags">
+                    <span class="tag">Research Project</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Signal Processing</span>
+                    <span class="tag">Affective Computing</span>
+                    <span class="tag">HCI</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview Section -->
+        <div class="content-section">
+            <h2>Overview</h2>
+            <p class="content-text">
+                This project is in collaboration with an industry partner.
+            </p>
+            <p class="content-text">
+                The project aim is to build an affect recognition model with state-of-the-arts AI architectures. The model will be integrated into various wrist-worn / HMD wearable devices for affect-aware recommendation systems.
+            </p>
+            <p class="content-text">
+                We have published some intermediary results as part of a <a href="https://openreview.net/forum?id=7sNM3ANITc" target="_blank">workshop paper for NeurIPS '25</a> presented this year! In this work, we investigate the role of fine-grained sleep physiological data in next-day affect prediction, particularly stress. In our <strong>custom, in-the-wild dataset</strong> dataset, we collected physiological and activity data from 44 participants over 28 days, 24 hours per day; the Garmin Venu 3S smartwatches were used. Features were extracted from a variety of signals including heart rate variability (HRV), respiration rate, heart rate, SpO2 (Oxygen saturation level), Beat-to-Beat Intervals (BBI), skin temperature, and step count. Using the extracted time-series feature data, we train an XGBoost model and a custom multimodal encoder network based on a CNN architecture. We achieve a mean AUROC score of over 67%, with the combination of fine-grained sleep data and current physiological data outperforming the case where only the current physiological data is used to predict stress. More details can be found in our paper.
+            </p>
+            <p class="content-text">
+                For the intermediary work, my role was on:
+            </p>
+            <ul style="margin-left: 30px; margin-top: 15px; margin-bottom: 15px; line-height: 2;">
+                <li><strong>Data analysis and modeling.</strong> After brainstorming on several ways to compare the effectiveness of fine-grained sleep data, we came up with our custom multimodal encoder network, which I implemented, trained, and tested on our custom dataset. We are now looking into other state-of-the-arts models and methods on personalization, domain generalization, contrastive learning, and self-supervised learning.</li>
+                <li>Some involvement in <strong>signal processing and feature extraction</strong> from the collected watch data.</li>
+                <li><strong>Preliminary preparation work</strong> for the data collection (e.g. IRB ethics applications, questionnaire design, research protocol development).</li>
+            </ul>
+            <p class="content-text">
+                <strong>(More details will be included at the completion of the project.)</strong>
+            </p>
+        </div>
+
+        <!-- Project Timeline (Optional) -->
+        <div class="content-section">
+            <h2>Project Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Nov 2024</div>
+                    <div class="timeline-content">Start of Project.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Nov 2025</div>
+                    <div class="timeline-content">Published initial results at NeurIPS 2025 T4SH Workshop.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Today</div>
+                    <div class="timeline-content">Ongoing...</div>
+                </div>
+                <!-- <div class="timeline-item">
+                    <div class="timeline-date">[Month Year]</div>
+                    <div class="timeline-content">[Milestone or event description]</div>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Media Gallery (Optional) -->
+        <!-- <div class="content-section">
+            <h2>Project Gallery</h2>
+            <div class="image-gallery">
+                <img src="../assets/gallery-placeholder-1.jpg" alt="Project image 1" class="gallery-image">
+                <img src="../assets/gallery-placeholder-2.jpg" alt="Project image 2" class="gallery-image">
+                <img src="../assets/gallery-placeholder-3.jpg" alt="Project image 3" class="gallery-image">
+            </div>
+        </div> -->
+
+        <!-- Links & Resources -->
+        <div class="content-section">
+            <h2>Links & Resources</h2>
+            <div class="project-links">
+                <!-- <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fas fa-globe"></i>
+                    Live Demo
+                </a> -->
+                <!-- <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fab fa-github"></i>
+                    GitHub Repository
+                </a> -->
+                <a href="https://openreview.net/forum?id=7sNM3ANITc" class="project-link-btn" target="_blank">
+                    <i class="fas fa-file-pdf"></i>
+                    Research Paper (NeurIPS '25 T4SH)
+                </a>
+                <!-- <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fas fa-video"></i>
+                    Video Demo
+                </a> -->
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 - Hyungwoon Lee</p>
+        </footer>
+    </div>
+</body>
+</html>

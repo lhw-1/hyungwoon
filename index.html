@@ -5,361 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hyungwoon Lee</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Georgia', 'Palatino', serif;
-            background-color: #ffffff;
-            color: #8B7355;
-            line-height: 1.7;
-            padding-top: 70px;
-            overflow-x: hidden;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: #D4C4B0;
-            border-bottom: 1px solid #b6a187;
-            padding: 20px 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #D4C4B0;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-logo:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            color: #5D4A37;
-            text-decoration: none;
-            font-size: 1em;
-            font-weight: 600;
-            transition: color 0.3s, transform 0.3s;
-            display: inline-block;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 50%;
-            background-color: #6B5744;
-            transition: width 0.3s ease, left 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-            left: 0;
-        }
-
-        .nav-links a:hover {
-            color: #6B5744;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 30px;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 60px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #D4C4B0;
-        }
-
-        .header-content {
-            flex: 1;
-        }
-
-        .profile-picture {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #D4C4B0;
-            margin-left: 40px;
-            flex-shrink: 0;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .profile-picture:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(107, 87, 68, 0.2);
-        }
-
-        h1 {
-            font-size: 2.8em;
-            font-weight: 400;
-            margin-bottom: 10px;
-            color: #6B5744;
-        }
-
-        .subtitle {
-            font-size: 1.2em;
-            color: #9B8570;
-            margin-bottom: 20px;
-        }
-
-        .contact-links {
-            margin-top: 20px;
-            display: flex;
-            gap: 20px;
-        }
-
-        .contact-links a {
-            color: #8B7355;
-            font-size: 1.5em;
-            transition: color 0.3s, transform 0.3s;
-            display: inline-block;
-        }
-
-        .contact-links a:hover {
-            color: #6B5744;
-            transform: translateY(-3px) scale(1.1);
-        }
-
-        section {
-            margin-bottom: 60px;
-            scroll-margin-top: 90px;
-        }
-
-        h2 {
-            font-size: 1.8em;
-            font-weight: 400;
-            margin-bottom: 20px;
-            color: #6B5744;
-            border-bottom: 1px solid #E8DED0;
-            padding-bottom: 10px;
-        }
-
-        .bio {
-            text-align: justify;
-            margin-bottom: 20px;
-        }
-
-        .research-item, .project-item, .publication-item {
-            margin-bottom: 25px;
-        }
-
-        .project-item {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            transition: transform 0.3s ease;
-        }
-
-        .project-item:hover {
-            transform: translateX(5px);
-        }
-
-        .project-image {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #D4C4B0;
-            flex-shrink: 0;
-            transition: transform 0.4s ease, border-color 0.3s ease;
-        }
-
-        .project-item:hover .project-image {
-            transform: scale(1.1) rotate(5deg);
-            border-color: #8B7355;
-        }
-
-        .project-content {
-            flex: 1;
-        }
-
-        .item-title {
-            font-weight: 600;
-            color: #6B5744;
-            margin-bottom: 5px;
-        }
-
-        .item-meta {
-            font-style: italic;
-            color: #A08770;
-            font-size: 0.95em;
-            margin-bottom: 8px;
-        }
-
-        .item-description {
-            margin-top: 0px;
-            padding-top: 0px !important;
-            padding-bottom: 0px;           
-        }
-
-        .item-description-top {
-            margin-top: 0px;
-        }
-
-        .publication-item a, .project-item a, .bio a, .item-description a, .item-description-top a {
-            color: #8B7355;
-            text-decoration: none;
-            border-bottom: 1px solid #D4C4B0;
-            transition: border-color 0.3s ease, color 0.3s ease;
-        }
-
-        .publication-item a:hover, .project-item a:hover, .bio a:hover, .item-description a:hover, .item-description-top a:hover {
-            border-bottom: 1px solid #8B7355;
-            color: #6B5744;
-        }
-
-        footer {
-            margin-top: 80px;
-            padding-top: 30px;
-            border-top: 1px solid #D4C4B0;
-            text-align: center;
-            font-size: 0.9em;
-            color: #A08770;
-        }
-
-        /* Custom Accordion Styles */
-        .accordion-button {
-            font-weight: 600;
-            background-color: #8B7355;
-            color: #fff7ed;
-            cursor: pointer;
-            padding: 15px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 16px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            border-radius: 4px;
-            margin-top: 5px;
-        }
-
-        .accordion-button:hover {
-            background-color: #6B5744;
-            transform: translateX(3px);
-        }
-
-        .accordion-button.active {
-            background-color: #6B5744;
-        }
-
-        .accordion-button:after {
-            content: '\002B';
-            color: white;
-            font-weight: bold;
-            float: right;
-            margin-left: 5px;
-            transition: transform 0.3s ease;
-        }
-
-        .accordion-button.active:after {
-            content: "\2212";
-            transform: rotate(180deg);
-        }
-
-        .accordion-content {
-            padding: 0 15px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background-color: #f9f9f9;
-        }
-
-        .accordion-content p {
-            padding: 15px 0;
-            line-height: 1.6;
-        }
-
-        /* Scroll Progress Bar */
-        .scroll-progress {
-            position: fixed;
-            top: 70px;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(to right, #8B7355, #6B5744);
-            z-index: 999;
-            transition: width 0.1s ease;
-        }
-
-        @media (max-width: 768px) {
-            .nav-container {
-                gap: 20px;
-                font-size: 0.7em;
-            }
-
-            .container {
-                padding: 40px 20px;
-            }
-
-            header {
-                flex-direction: column-reverse;
-                align-items: center;
-                text-align: center;
-            }
-
-            .header-content {
-                margin-top: 20px;
-            }
-
-            .profile-picture {
-                margin-left: 0;
-                width: 150px;
-                height: 150px;
-            }
-
-            .contact-links {
-                justify-content: center;
-            }
-
-            h1 {
-                font-size: 2.2em;
-            }
-
-            h2 {
-                font-size: 1.5em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
     <div class="scroll-progress"></div>
@@ -370,6 +16,7 @@
             <div class="nav-links">
                 <a href="#about">About Me!</a>
                 <a href="#research">Research Interests</a>
+                <a href="#nonresearch">Non-Research Interests</a>
                 <a href="#projects">Projects</a>
                 <a href="#publications">Publications</a>
             </div>
@@ -399,9 +46,6 @@
                 Heyo! My name is <strong>Hyungwoon</strong>, though people just call me <strong>Hyung</strong>, usually :)
             </p>
             <p class="bio">
-                <strong>(I am currently looking for Masters / Ph.D. Positions!)</strong>
-            </p>            
-            <p class="bio">
                 My undergraduate studies were at the <a href="https://www.nus.edu.sg/" target="_blank">National University of Singapore (NUS)</a>, in <strong>Computer Science</strong> and <strong>Psychology</strong>, with an emphasis on <strong>machine learning and AI</strong>, as well as <strong>clinical and cognitive psychology</strong>. 
             </p>
             <p class="bio">
@@ -416,25 +60,13 @@
             <h2>Research Interests</h2>
 
             <div class="research-item">
-                <button class="accordion-button">Cognitive Sciences, Psychology, and Education</button>
-                <div class="accordion-content">
-                    <p class="item-description-top">
-                        When I first entered university, my career aspirations were actually in education and teaching - and I got into research after finding out that you'd likely need a Ph.D. to become a lecturer. What I didn't know was that I would end up enjoying research and completely shift my career aspirations! I still enjoy teaching quite a bit, and I have served as an undergraduate tutor since my 2nd year in NUS, until graduation. CS1101S in particular was a large part of that enjoyment, having taught it in 4 separate semesters as an avenger (our codename for undergraduate tutor) and later a reflection tutor, a position usually reserved for graduate students.
-                    </p>
-                    <p class="item-description">
-                        In my 2nd year, I converted my psychology minor (which was initially taken out of pure interest) into a double major, and started looking into clinical psychology specifically. However, after working with Prof. Kean Hsu in his CTS lab, which focused heavily on the impact of cognitive processes and biases on mental health, I realized that what really interested me was that cognitive aspect of psychology. When Prof. Suranga Nanayakkara formed his <a href="https://chill.nus.edu.sg/" target="_blank">Centre for Holistic Inquiry into Lifelong Learning (CHILL)</a>, I started working with the centre on learning-related projects such as <a href="#projects">iLEMS</a> and my <a href="#projects">final year project on acute cognitive stress detection</a>. Over time, I have concretized my interest in <strong>cognitive sciences and psychology</strong>, with an emphasis towards theories on <strong>learning, memory, and mental models</strong> - and incorporating this knowledge into building impactful systems that align with the theory.
-                    </p>
-                </div>
-            </div>
-
-            <div class="research-item">
                 <button class="accordion-button">HCI and Cognitive Augmentation</button>
                 <div class="accordion-content">
                     <p class="item-description-top">
-                        Working with Prof. Suranga's AH Lab has been a blessing on my research journey - I was able to work with interdisciplinary experts from various domains such as information systems, interaction design, assistive technology, virtual reality, sensors and haptics, signal processing, machine learning, affective psychology, drone systems, communications and new media, UI/UX design, embedded systems, education pedagogy, clinical psychology... you get the idea. It has been, and continues to be, a real haven for new interdisciplinary research ideas to be generated. My love for bridging fields together to generate interdisciplinary insights have thus thrived within the field of HCI, and I suspect that this will not change for some time. 
+                        Working with Prof. Suranga's AH Lab has been a blessing on my research journey - I was able to work with an interdisciplinary group of people, with experts from various domains such as information systems, interaction design, assistive technology, virtual reality, sensors and haptics, signal processing, machine learning, affective psychology, drone systems, communications and new media, UI/UX design, embedded systems, education pedagogy, clinical psychology... It has been, and continues to be, a great environment for new research ideas to be generated and ideated upon. My love for bridging fields together to generate interdisciplinary insights have so far thrived within the field of HCI, and I suspect that this will be the case for some time. 
                     </p>
                     <p class="item-description">
-                        In particular, the HCI paradigm of <strong>augmentation technology</strong> has influenced me quite a bit. The idea of designing and developing technology that can assist, enhance, or amplify human capabilities has been the core drive behind technological progress in history, and I am happy to contribute towards augmentation technology that addresses human cognitive capabilities - especially in terms of learning and memory. What I want to work on in the future is, by combining my technical skills with my theoretical knowledge, build impactful and lasting systems that can easily be integrated into our daily lives while extending our cognitive mind and capabilities.
+                        In particular, the HCI paradigm of <strong>augmentation technology</strong> has inspired me quite a bit. The idea of designing and developing technology that can assist, enhance, or amplify human capabilities has been the core drive behind technological progress in history, and I am happy to contribute towards augmentation technology that addresses human cognitive capabilities - especially in terms of learning and memory. What I want to work on in the future is, by combining my technical skills with my theoretical knowledge, build impactful and lasting systems that can easily be integrated into our daily lives while extending our cognitive mind and capabilities.
                     </p>
                 </div>
             </div>
@@ -447,6 +79,18 @@
                     </p>
                     <p class="item-description">
                         Having worked with a diverse range of ML and AI techniques such as regression models, tree-based models and SVMs, deep learning for computer vision (CV) and natural language processing (NLP), reinforcement learning (RL), self-supervised learning (SSL), as well as encoders and transformer architectures (and of course Large Language Models (LLMs)), I now have a better intuition for selecting and constructing the appropriate model architectures for given problems. What I would like to do is to apply this intuition towards building <strong>context-aware multimodal AI</strong> pipelines that can be incorporated into cognitive augmentation systems.
+                    </p>
+                </div>
+            </div>
+
+            <div class="research-item">
+                <button class="accordion-button">Cognitive Sciences, Psychology, and Education</button>
+                <div class="accordion-content">
+                    <p class="item-description-top">
+                        When I first entered university, my early career aspirations were actually in education and teaching - and I got into research after finding out that you'd likely need a Ph.D. to become a lecturer. What I didn't know was that I would end up enjoying research and completely shift my career directions! I still enjoy teaching quite a bit, and I have served as an undergraduate tutor since my 2nd year in NUS, until graduation. CS1101S in particular was a large part of that enjoyment, having taught it in 4 separate semesters as an avenger (our codename for undergraduate tutor) and later a reflection tutor, a position usually reserved for graduate students.
+                    </p>
+                    <p class="item-description">
+                        In my 2nd year, I converted my psychology minor (which was initially taken out of pure interest) into a double major, and started looking into clinical psychology specifically. However, after working with Prof. Kean Hsu in his CTS lab, which focused heavily on the impact of cognitive processes and biases on mental health, I realized that what really interested me was that cognitive aspect of psychology. When Prof. Suranga Nanayakkara formed his <a href="https://chill.nus.edu.sg/" target="_blank">Centre for Holistic Inquiry into Lifelong Learning (CHILL)</a>, I started working with the centre on learning-related projects such as <a href="#projects">iLEMS</a> and my <a href="#projects">final year project on acute cognitive stress detection</a>. Over time, I have concretized my interest in <strong>cognitive sciences and psychology</strong>, with an emphasis towards <strong>learning, memory, and mental models</strong> - and incorporating this knowledge into building impactful systems that align with the theory.
                     </p>
                 </div>
             </div>
@@ -465,95 +109,151 @@
 
         </section>
 
+        <section id="nonresearch">
+            <h2>Non-Research Interests</h2>
+
+            <div class="research-item">
+                <button class="accordion-button">Music and Video Games</button>
+                <div class="accordion-content">
+                    <p class="item-description-top">
+                        My interest in music was sparked by video games - to be more specific, nintendo games that I played when I was young. When I first came to Singapore, I barely knew English (I commonly joke to my friends that I only knew five things: “yes”, “no”, “hello”, “goodbye”, “I love apples”. “I love apples” was one of those sentences that you get taught early on in Korean primary schools back then, for no real reason other than its simplicity). What fascinated me was how the music seemed to tell a story of its own, changing and evolving with different environments within the game. In secondary school, I started formally studying music as a subject - and I also took up bagpipes for my extra-curricular activity (a rare chance to learn a rare instrument). Since then, I have delved into digital music composition (initially using a pirated version of FL Studio 12, now with a full licensed version of FL Studio), live performances (I play both piano and bagpipes), and even did my IB extended essay on music - comparing Tchaikovsky's incidental music for <em>Hamlet</em> with Shostakovich's film music for <em>Hamlet</em>. I've also continued as a competitive bagpiper; I started in secondary school in 2013, and I have since been involved with the bagpiping scene. I am currently part of the Singapore Pipe Band Association Exco (for logistics & event organization), and recently have been part of Singapore's Grade 4A Lion City Pipe Band.
+                    </p>
+                    <p class="item-description">
+                        Throughout the years, video game music remains one of my lasting hobbies. I love to analyse and enjoy the interplay of narrative and music, and the distinct yet diverse styles brought out by composers from different cultures for different video game genres. Someday, I aim to start a blog about video game music... someday. As for video games, I enjoy single-player RPGs the most, particularly the soulslike genre (with platinum on all fromsoft PC games to date), though I have since played a diverse array of video game genres to figure out my preferences.
+                    </p>
+                    <p class="item-description">
+                        Apart from music and video games, I have other hobbies (that might not yet warrant full paragraphs) like origami, digital art, storywriting, cooking, films and cinematography, self-study of history, mythology and philosophy, etc. I partake in each of these every now and then, but all of these diverse experiences do contribute towards my generalized knowledge base and gives me experiences that I can build on (especially history, mythology, and philosophy - these provide wonderful basis for how to reason about real world issues and challenges, and sometimes even complements research directions and interests).
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
         <section id="projects">
             <h2>Selected Projects</h2>
             <div class="project-item">
-                <img src="assets/project-1.png" alt="Project 1" class="project-image">
+                <a href="projects/project-1.html" class="project-link">
+                    <img src="assets/project-1.png" alt="Affect Recognition Project" class="project-image">
+                </a>
                 <div class="project-content">
-                    <div class="item-title">Affect Recognition Project</div>
+                    <a href="projects/project-1.html" class="project-title-link">
+                        <div class="item-title">Affect Recognition Project</div>
+                    </a>
                     <div class="item-meta">Role: Research Engineer @ AH Lab | Duration: Nov 2024 - Ongoing</div>
                     <p class="item-description">
-                        This project is in collaboration with an industry partner, and aims to build an affect recognition model with state-of-the-Arts AI architecture. The model will be integrated into various wrist-worn / HMD wearable devices for affect-aware recommendation systems. We have a <a href="#publications">workshop paper for NeurIPS '25</a> to be presented later this year!
+                        Project in collaboration with an industry partner. This project aims to build affect recognition model with state-of-the-Arts AI architecture, with the aim of integrating the model into wrist-worn / HMD wearable devices for affect-aware recommendation systems. (We have a <a href="#publications">workshop paper for NeurIPS '25</a> presented this year!)
                     </p>
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-2.png" alt="Project 2" class="project-image">
+                <a href="projects/project-2.html" class="project-link">
+                    <img src="assets/project-2.png" alt="ProctorX" class="project-image">
+                </a>
                 <div class="project-content">
-                    <div class="item-title">ProctorX</div>
-                    <div class="item-meta">Role: Research Engineer @ CHILL | Duration: Sept 2024 - Jul 2025</div>
+                    <a href="projects/project-2.html" class="project-title-link">
+                        <div class="item-title">ProctorX</div>
+                    </a>
+                    <div class="item-meta">Role: Research Engineer @ CHILL | Duration: Sep 2024 - Jul 2025</div>
                     <p class="item-description">
-                        This project was in collaboration with NUS Centre for Teaching, Learning and Technology (CTLT). We built an AI-driven platform that can detect and flag the use of prohibited applications during open internet examinations. Video recordings and keyboard/mouse data are used by the platform to estimate the likelihood of prohibited applications being used - a surprisingly non-trivial task!
+                        Project in collaboration with NUS Centre for Teaching, Learning and Technology (CTLT). We built an AI-driven platform that can detect and flag the use of prohibited applications during open internet examinations. Video recordings and keyboard/mouse data are used by the platform to estimate the likelihood of prohibited applications being used - a surprisingly non-trivial task!
                     </p>
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-3.jpg" alt="Project 3" class="project-image">
+                <a href="projects/project-3.html" class="project-link">
+                    <img src="assets/project-3.jpg" alt="Acute Cognitive Stress Detection" class="project-image">
+                </a>
                 <div class="project-content">
-                    <div class="item-title">Acute Cognitive Stress Detection</div>
+                    <a href="projects/project-3.html" class="project-title-link">
+                        <div class="item-title">Acute Cognitive Stress Detection</div>
+                    </a>
                     <div class="item-meta">Role: Final Year Student (4th Year) @ NUS | Duration: Aug 2024 - Apr 2025</div>
                     <p class="item-description">
-                        This student research project focused on detection of acute cognitive stress that arises when students are working on mentally demanding tasks, especially when recalling information under pressure. Multimodal machine learning techniques were used alongside collected biosignal data (e.g. HRV, EDA, Temp) to build a binary classification model. This was a strenuous but exceptionally rewarding project, as I had to combine all that I'd learnt from both computer science and psychology - including research protocol design and data collection, as well as multimodal machine learning, fusion techniques, and signal processing. [Report available upon request]
+                        This student research project focused on detection of acute cognitive stress that arises when students are working on mentally demanding tasks, especially when recalling information under pressure. Multimodal machine learning techniques were used alongside collected biosignal data (e.g. HRV, EDA, Temp) to build a multimodal stress classification model. [Report available upon request]
                     </p>
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-4.jpg" alt="Project 4" class="project-image">
+                <a href="projects/project-4.html" class="project-link">
+                    <img src="assets/project-4.jpg" alt="iLEMS" class="project-image">
+                </a>
                 <div class="project-content">
-                    <div class="item-title"><a href="https://chill.nus.edu.sg/about/" target="_blank">Integrated Learning and Management System (iLEMS)</a></div>
-                    <div class="item-meta">Role: Research Engineer @ CHILL | Duration: Jul 2024 - Ongoing</div>
+                    <a href="projects/project-4.html" class="project-title-link">
+                        <div class="item-title">Integrated Learning and Management System (iLEMS)</div>
+                    </a>
+                    <div class="item-meta">Role: Research Engineer @ CHILL | Duration: Jul 2024 - Jun 2025</div>
                     <p class="item-description">
-                        This project was initiated under the NUS CHILL. The iLEMS system is a web-based platform that integrates both course metadata and student behavioral and cognitive state data collected during course time to analyze and present the learning and engagement levels of students over time, allowing for instructors to have a more holistic view of the classroom. The platform is still a work in progress under NUS CHILL.
+                        This project was initiated under <a href="https://chill.nus.edu.sg/about/" target="_blank">CHILL @ NUS</a>. The iLEMS system is a web-based platform that integrates both course metadata and student behavioral and cognitive state data collected during course time to analyze and present the learning and engagement levels of students over time, allowing for instructors to have a more holistic view of the classroom. The platform is still a work in progress under CHILL.
                     </p>
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-5.png" alt="Project 5" class="project-image">
+                <a href="projects/project-5.html" class="project-link">
+                    <img src="assets/project-5.png" alt="Emplity" class="project-image">
+                </a>
                 <div class="project-content">
-                    <div class="item-title"><a href="https://emplity.org" target="_blank">Emplity</a></div>
+                    <a href="projects/project-5.html" class="project-title-link">
+                        <div class="item-title">Emplity</div>
+                    </a>
                     <div class="item-meta">Role: Chief Research Officer / Co-founder | Duration: Nov 2023 - Ongoing</div>
                     <p class="item-description">
-                        Emplity is my third startup venture (and the first that actually took off) - we build AI-driven applications for mental health professionals in-training, such as AI Roleplay for Cognitive-behavioral Therapy (CBT) through audio / video chats, and AI review of case studies and transcripts - born out of my own pain points when I was a clinical psychology student. We are currently undergoing trials with institutes of higher learning and universities. (If this sounds interesting to you as a potential client, feel free to reach out!)
+                        Emplity is my startup; we build AI-driven applications for mental health professionals in-training, and we are currently undergoing trials with institutes of higher learning and universities. If this sounds interesting to you as a potential collaborator / client, feel free to reach out!
                     </p>
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-6.jpg" alt="Project 6" class="project-image">
+                <a href="projects/project-6.html" class="project-link">
+                    <img src="assets/project-6.png" alt="Student Program Classification" class="project-image">
+                </a>
                 <div class="project-content">
-                    <div class="item-title">Student Program Classification</div>
-                    <div class="item-meta">Role: Undergraduate Researcher (3rd Year) @ NUS | Duration: Aug 2023 - Apr 2024</div>
+                    <a href="projects/project-6.html" class="project-title-link">
+                        <div class="item-title">Student Program Classification</div>
+                    </a>
+                    <div class="item-meta">Role: Undergraduate Researcher (3rd Year) @ NUS | Duration: Jan 2023 - Dec 2023</div>
                     <p class="item-description">
-                        This student research project focused on classifying student programs through low-level program traces extracted from abstract syntax trees (AST). Both standard machine learning models and LLMs were used to cluster programs based on these traces, and results were compared. The angle that we took was: student programs can be classified not based on paradigms or algorithms but by "algorithmic processes" - such as a recursive vs iterative process as defined by SICP, which we saw as different examples of students' ways of thinking while programming. [Report available upon request]
+                        This student research project focused on classifying student programs through low-level program traces extracted from abstract syntax trees (AST). Both standard machine learning models and LLMs were used to cluster programs based on these traces, with significant results. [Report available upon request]
                     </p>
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-7.png" alt="Project 7" class="project-image">
+                <a href="projects/project-7.html" class="project-link">
+                    <img src="assets/project-7.png" alt="MarkBind" class="project-image">
+                </a>
                 <div class="project-content">
-                    <div class="item-title"><a href="https://markbind.org/" target="_blank">MarkBind</a></div>
-                    <div class="item-meta">Role: Senior Developer @ NUS | Duration: Jan 2023 - May 2025</div>
+                    <a href="projects/project-7.html" class="project-title-link">
+                        <div class="item-title">MarkBind</div>
+                    </a>
+                    <div class="item-meta">Role: Senior Developer @ NUS | Duration: Jul 2022 - Jun 2025</div>
                     <p class="item-description">
-                        MarkBind is a command-line tool that can help to generate dynamic websites from simple markdown text. Built and maintained by students of National University of Singapore (NUS). I began work on it as a junior developer in my 3rd year, and continued to work as a senior developer until graduation.
+                        <a href="https://markbind.org/" target="_blank">MarkBind</a> is a command-line tool that can help to generate dynamic websites from simple markdown text. Built and maintained by students of National University of Singapore (NUS). I began work on it as a junior developer in my 3rd year, and continued to work as a senior developer until graduation.
                     </p>
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-8.jpg" alt="Project 8" class="project-image">
+                <a href="projects/project-8.html" class="project-link">
+                    <img src="assets/project-8.jpg" alt="Robot Guide Dog" class="project-image">
+                </a>
                 <div class="project-content">
-                    <div class="item-title"><a href="https://www.ccsgp.comp.nus.edu.sg/robotic-dog-intern" target="_blank">Robot Guide Dog</a></div>
-                    <div class="item-meta">Role: Research Engineer Intern @ NUS AI Lab | Duration: May 2022 - Aug 2023</div>
+                    <a href="projects/project-8.html" class="project-title-link">
+                        <div class="item-title">Robot Guide Dog</div>
+                    </a>
+                    <div class="item-meta">Role: Research Engineer Intern @ NUS AI Lab | Duration: May 2022 - Jul 2023</div>
                     <p class="item-description">
-                        This was part of an ongoing research project to build a navigation algorithm for a robotic guide dog in unseen environments, for the purpose of guiding visually impaired used. This project specifically focused on unseen navigation and stairs climbing.
+                        This was part of an ongoing <a href="https://www.ccsgp.comp.nus.edu.sg/robotic-dog-intern" target="_blank">research project</a> to build a navigation algorithm for a robotic guide dog in unseen environments, for the purpose of guiding visually impaired used. This project specifically focused on unseen navigation and stairs climbing.
                     </p>
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-9.jpg" alt="Project 9" class="project-image">
+                <a href="projects/project-9.html" class="project-link">
+                    <img src="assets/project-9.jpg" alt="Source Academy" class="project-image">
+                </a>
                 <div class="project-content">
-                    <div class="item-title"><a href="https://sourceacademy.nus.edu.sg/" target="_blank">Source Academy</a></div>
-                    <div class="item-meta">Role: Senior Developer @ NUS | Duration: Aug 2021 - May 2025</div>
+                    <a href="projects/project-9.html" class="project-title-link">
+                        <div class="item-title">Source Academy</div>
+                    </a>
+                    <div class="item-meta">Role: Senior Developer @ NUS | Duration: Jul 2021 - Jun 2025</div>
                     <p class="item-description">
-                        Source Academy is a web-based platform for interactive learning, designed around the Structure and Interpretation of Computer Programs (SICP) textbook, and used for the CS1101S: Programming Methodology I course. Built and maintained by students of National University of Singapore (NUS). I began work on it as a junior developer in my 2nd year, and continued to work as a senior developer until graduation.
+                        <a href="https://sourceacademy.nus.edu.sg/" target="_blank">Source Academy</a> is a web-based platform for interactive learning, designed around the Structure and Interpretation of Computer Programs (SICP) textbook, and used for the CS1101S: Programming Methodology I course. Built and maintained by students of National University of Singapore (NUS). I began work on it as a junior developer in my 2nd year, and continued to work as a senior developer until graduation.
                     </p>
                 </div>
             </div>

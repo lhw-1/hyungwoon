@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Program Classification - Hyungwoon Lee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./project.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Back to Main
+            </a>
+            <span title="This is Frenny!"><img src="../assets/frenny.jpg" alt="Frenny" class="nav-logo"></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Project Header -->
+        <div class="project-header">
+            <img src="../assets/project-6.png" alt="Student Program Classification" class="project-image-large">
+            <div class="project-header-content">
+                <h1>Student Program Classification</h1>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <i class="fas fa-user-circle"></i>
+                        <span><strong>Role:</strong> Student Researcher</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span><strong>Duration:</strong> Jan 2023 - Dec 2023</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <i class="fas fa-building"></i>
+                        <span><strong>Organization:</strong> School of Computing, National University of Singapore</span>
+                    </div>
+                </div>
+                <div class="project-tags">
+                    <span class="tag">Research Project</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Large Language Models</span>
+                    <span class="tag">Educational Technology</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview Section -->
+        <div class="content-section">
+            <h2>Overview</h2>
+            <p class="content-text">
+                This was my project for <strong>CP3209: Undergraduate Research Opportunities Program (UROP)</strong> at NUS; the topic was initially proposed by my supervisor, but the project scope changed quite a bit since its initial conception. I was under the supervision of Prof. <a href="https://www.comp.nus.edu.sg/cs/people/henz/" target="_blank">Martin Henz</a>, and I was also fortunate to have worked with Prof <a href="https://www.comp.nus.edu.sg/cs/people/boyd/" target="_blank">Boyd Anderson</a> as well. This project was also meant for further development of <a href="projects/project-9.html" class="project-title-link">Source Academy</a>, an online learning platform for CS1101S: Programming Methodology.
+            </p>
+            <p class="content-text">
+                This project focused on classifying student programs initially for use in the Source Academy auto-grader, but eventually became the foundations for the AI chatbot system within Source Academy, especially given the release of ChatGPT (GPT-3) a few months prior to the beginning of the project. After reviewing methods of program classification, we decided that the goals of the project did not align with prior works (which focused more on software engineering or debugging, and less relevant for educational contexts). We came up with the idea to extract specific function calls, operations, and data flow from programs; through flow analysis, we extracted features from the Abstract Syntax Trees (AST) of student programs, which were then used to train <strong>tree-based and LLM-based clustering methods</strong>. By comparing patterns found between these two clustering models, we managed to identify distinct patterns of what we termed <strong>"algorithmic processes"</strong>, i.e. different implementations of the same algorithms that demonstrate how students fundamentally understood the algorithm. (An example is the iterative vs. recursive processes for recursive functions; you can refer to our textbook, <a href="https://sourceacademy.org/sicpjs/1.2.1" target="_blank"><em>Structure and Interpretation of Computer Programs Ch. 1.2.1</em></a>, for more information.)
+            </p>
+            <p class="content-text">
+                After we developed these clustering models, we also conducted a round of surveys with other CS1101S teaching assistants, and found that teaching assistants would indeed make the same classification as the clustering methods did - even though these were not based on known algorithms and programming paradigms (e.g. functional programming vs OOP). This suggested to us that there is a categorization that can be implicitly found by teaching assistants and tutors, as representations of meaningful differences in <strong>how students conceptually understood the course materials</strong> - and our clustering models were able to classify these successfully! This was also rather novel given the recency of LLMs back then. The report can be made available upon request!
+            </p>
+            <p class="content-text">
+                This project was a catalyst for me to delve deeper into what we mean by "student understanding", and eventually led me to pursue a double major in psychology alongside computer science, as I wanted to understand the psychological mechanisms of the human mind and potentially combine it with machine learning. 
+            </p>
+        </div>
+
+        <!-- Project Timeline (Optional) -->
+        <div class="content-section">
+            <h2>Project Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2023</div>
+                    <div class="timeline-content">Start of Project. Commencement of Literature Review and Modeling.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 2023</div>
+                    <div class="timeline-content">Mid-project Report Submission and Presentation.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Aug 2023</div>
+                    <div class="timeline-content">Start of Survey Data Collection and Analysis.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Dec 2023</div>
+                    <div class="timeline-content">Final Report Submission and Presentation.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Media Gallery (Optional) -->
+        <div class="content-section">
+            <h2>Project Gallery</h2>
+            <div class="image-gallery">
+                <img src="../assets/project-6/methods.png" alt="Project image 1" class="gallery-image">
+                <img src="../assets/project-6/algoapp.png" alt="Project image 2" class="gallery-image">
+            </div>
+        </div>
+
+        <!-- Links & Resources -->
+        <!-- <div class="content-section">
+            <h2>Links & Resources</h2>
+            <div class="project-links">
+                <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fas fa-globe"></i>
+                    Live Demo
+                </a>
+                <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fab fa-github"></i>
+                    GitHub Repository
+                </a>
+                <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fas fa-file-pdf"></i>
+                    Research Paper
+                </a>
+                <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fas fa-video"></i>
+                    Video Demo
+                </a>
+            </div>
+        </div> -->
+
+        <footer>
+            <p>© 2025 - Hyungwoon Lee</p>
+        </footer>
+    </div>
+</body>
+</html>

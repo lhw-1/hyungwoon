@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acute Cognitive Stress Detection - Hyungwoon Lee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./project.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Back to Main
+            </a>
+            <span title="This is Frenny!"><img src="../assets/frenny.jpg" alt="Frenny" class="nav-logo"></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Project Header -->
+        <div class="project-header">
+            <img src="../assets/project-3.jpg" alt="Acute Cognitive Stress Detection" class="project-image-large">
+            <div class="project-header-content">
+                <h1>Acute Cognitive Stress Detection</h1>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <i class="fas fa-user-circle"></i>
+                        <span><strong>Role:</strong> Final Year Student</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span><strong>Duration:</strong> Aug 2024 - Apr 2025</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <i class="fas fa-building"></i>
+                        <span><strong>Organization:</strong> School of Computing, National University of Singapore</span>
+                    </div>
+                </div>
+                <div class="project-tags">
+                    <span class="tag">Research Project</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Signal Processing</span>
+                    <span class="tag">Affective Computing</span>
+                    <span class="tag">HCI</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview Section -->
+        <div class="content-section">
+            <h2>Overview</h2>
+            <p class="content-text">
+                This was my project for <strong>CP4101: BComp Dissertation (Final Year Project)</strong> at NUS; the topic was self-proposed and initiated, and was a cross-department project between the Department of Computer Science and the Department of Information Systems. I was under the supervision of Prof. <a href="https://www.comp.nus.edu.sg/cs/people/suranga/" target="_blank">Suranga Nanayakkara</a>, and I was also fortunate to have worked with Profs. <a href="https://fass.nus.edu.sg/psy/people/steven-pan/" target="_blank">Steven Pan</a> and <a href="https://fass.nus.edu.sg/psy/people/qin-lili/" target="_blank">Qin Lili</a> from the NUS Department of Psychology.
+            </p>
+            <p class="content-text">
+                This project focused on detection of acute cognitive stress that arises when students are working on mentally demanding tasks, especially when recalling information under pressure. After an extensive literature review on stress detection and multimodal machine learning, I recruited NUS undergraduate students as participants. We conducted a within-subjects data collection study with the students. The first session was held a week before their examinations, where they were asked to do menial, cognitively non-demanding tasks; the second session was during their actual course examination. We used Garmin Venu 3S smartwatches (equipped with Photoplethysmogram (PPG) and temperature sensors) to collect bio-signal data, after which we filtered the signals for noises and extracted lower-level HRV and temperature features. This custom dataset was combined with public datasets like WESAD and CLAS to train and develop a <strong>multimodal binary classification model</strong>; multiple model architectures and multimodal fusion methods were compared to select the best performing combination. The final model achieved <strong>80.3%</strong> accuracy for in-situ stress detection. The report can be made available upon request!
+            </p>
+            <p class="content-text">
+                This was a strenuous but exceptionally rewarding project, as I had to combine all that I'd learnt from both computer science and psychology - including research protocol design and data collection, as well as multimodal machine learning, fusion techniques, and signal processing. As for the model, we are currently preparing to test and deploy the model in a wearable system for students, to be used for a proactive nudging wearable device that promotes optimal studying habits.
+            </p>
+        </div>
+
+        <!-- Project Timeline (Optional) -->
+        <div class="content-section">
+            <h2>Project Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2024</div>
+                    <div class="timeline-content">Project Ideation and Proposal.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Aug 2024</div>
+                    <div class="timeline-content">Start of Project. Commencement of Literature Review and Preliminary Investigations.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Nov 2024</div>
+                    <div class="timeline-content">Mid-project Report Submission and Presentation.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2025</div>
+                    <div class="timeline-content">Start of Data Collection and Analysis.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 2025</div>
+                    <div class="timeline-content">Final Report Submission and Presentation.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 2025</div>
+                    <div class="timeline-content">Won the Outstanding Undergraduate Research Prize (OURP) 2024/25, Individual Category.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Media Gallery (Optional) -->
+        <div class="content-section">
+            <h2>Project Gallery</h2>
+            <div class="image-gallery">
+                <img src="../assets/project-3/signals.png" alt="Project image 1" class="gallery-image">
+                <img src="../assets/project-3/neuro.png" alt="Project image 2" class="gallery-image">
+                <img src="../assets/project-3/table.png" alt="Project image 3" class="gallery-image">
+            </div>
+        </div>
+
+        <!-- Links & Resources -->
+        <!-- <div class="content-section">
+            <h2>Links & Resources</h2>
+            <div class="project-links">
+                <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fas fa-globe"></i>
+                    Live Demo
+                </a>
+                <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fab fa-github"></i>
+                    GitHub Repository
+                </a>
+                <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fas fa-file-pdf"></i>
+                    Research Paper
+                </a>
+                <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fas fa-video"></i>
+                    Video Demo
+                </a>
+            </div>
+        </div> -->
+
+        <footer>
+            <p>© 2025 - Hyungwoon Lee</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProctorX - Hyungwoon Lee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./project.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Back to Main
+            </a>
+            <span title="This is Frenny!"><img src="../assets/frenny.jpg" alt="Frenny" class="nav-logo"></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Project Header -->
+        <div class="project-header">
+            <img src="../assets/project-2.png" alt="ProctorX" class="project-image-large">
+            <div class="project-header-content">
+                <h1>ProctorX</h1>
+                <div class="project-meta">
+                    <div class="project-meta-item">
+                        <i class="fas fa-user-circle"></i>
+                        <span><strong>Role:</strong> Lead Developer</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span><strong>Duration:</strong> Sep 2024 - Jul 2025</span>
+                    </div>
+                    <div class="project-meta-item">
+                        <i class="fas fa-building"></i>
+                        <span><strong>Organization:</strong> <a href="https://chill.nus.edu.sg/" target="_blank">Centre for Holistic Inquiry into Lifelong Learning (CHILL) @ NUS</a></span>
+                    </div>
+                </div>
+                <div class="project-tags">
+                    <span class="tag">AI / Software Engineering</span>
+                    <span class="tag">Large Language Models</span>
+                    <span class="tag">Computer Vision</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview Section -->
+        <div class="content-section">
+            <h2>Overview</h2>
+            <p class="content-text">
+                This project was in collaboration with the <a href="https://ctlt.nus.edu.sg/" target="_blank">Centre for Teaching, Learning and Technology (CTLT) @ NUS</a>. 
+            </p>
+            <p class="content-text">
+                The project aim was to build an AI-driven platform that can detect and flag the use of prohibited applications during open internet examinations. We built a prototype cross-OS application for recording the computer screen and keyboard/mouse input data; using this application as a basis, we built a web platform where you can upload the data to assess the likelihood of prohibited applications being used - a surprisingly non-trivial task! There is little to no prior work done on computer vision algorithms for <strong>computer screens</strong>, as opposed to natural images of objects or humans; by using fine-tuned multimodal LLMs, we were able to extract information from computer screens, including browser information, texts on screen, etc.
+            </p>
+            <p class="content-text">
+                For this project, I was the development lead. After building a prototype application for the cross-OS application, I worked on the web platform for prohibited app detection. The backend of the application was powered by two LLM pipelines: (1) a <strong>text-based analysis</strong> that processes and extracts typed text from keyboard data, and subsequently runs it through a fine-tuned LLM pipeline to assess likelihood of communication with others; (2) a <strong>video-based analysis</strong> that processes the video recording data, and in conjunction with the keyboard and mouse data, runs it through a fine-tuned Multimodal LLM pipeline to assess the likelihood of prohibited applications being used on screen. Our work was mainly done through LLMs to ensure flexibility, while non-LLM processing was optimized for scalability. 
+            </p>
+            <p class="content-text">
+                Our work was under multiple practical constraints. We needed the logging software to be run on all devices, while not compromising on privacy and security at the same time. Certain features that would have been useful, such as events or browser activity logging, were OS-level and hence could not be implemented due to privacy and security concerns. The analysis could only be done with local LLMs given similar privacy and security concerns, and hence we had to work with available resources. Furthermore, we had to ensure that security concerns were met in terms of data uploading to the cloud, posing additional challenges. Our team was able to address these concerns and successfully deliver the product within the timeline.
+            </p>
+        </div>
+
+        <!-- Project Timeline (Optional) -->
+        <div class="content-section">
+            <h2>Project Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Sep 2024</div>
+                    <div class="timeline-content">Start of Project. Research on available tools and models.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Feb 2025</div>
+                    <div class="timeline-content">Discussions on prototypes.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 2025</div>
+                    <div class="timeline-content">CTLT Hackathon for penetration testing of ProctorX logging system.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jul 2025</div>
+                    <div class="timeline-content">Review and Delivery of ProctorX System Prototypes.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Media Gallery (Optional) -->
+        <!-- <div class="content-section">
+            <h2>Project Gallery</h2>
+            <div class="image-gallery">
+                <img src="../assets/gallery-placeholder-1.jpg" alt="Project image 1" class="gallery-image">
+                <img src="../assets/gallery-placeholder-2.jpg" alt="Project image 2" class="gallery-image">
+                <img src="../assets/gallery-placeholder-3.jpg" alt="Project image 3" class="gallery-image">
+            </div>
+        </div> -->
+
+        <!-- Links & Resources -->
+        <!-- <div class="content-section">
+            <h2>Links & Resources</h2>
+            <div class="project-links">
+                <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fas fa-globe"></i>
+                    Live Demo
+                </a>
+                <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fab fa-github"></i>
+                    GitHub Repository
+                </a>
+                <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fas fa-file-pdf"></i>
+                    Research Paper
+                </a>
+                <a href="#" class="project-link-btn" target="_blank">
+                    <i class="fas fa-video"></i>
+                    Video Demo
+                </a>
+            </div>
+        </div> -->
+
+        <footer>
+            <p>© 2025 - Hyungwoon Lee</p>
+        </footer>
+    </div>
+</body>
+</html>
