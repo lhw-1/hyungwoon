@@ -22,6 +22,7 @@
             color: #8B7355;
             line-height: 1.7;
             padding-top: 70px;
+            overflow-x: hidden;
         }
 
         nav {
@@ -50,6 +51,11 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #D4C4B0;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .nav-links {
@@ -62,7 +68,25 @@
             text-decoration: none;
             font-size: 1em;
             font-weight: 600;
-            transition: color 0.3s;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: #6B5744;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
         }
 
         .nav-links a:hover {
@@ -96,6 +120,12 @@
             border: 3px solid #D4C4B0;
             margin-left: 40px;
             flex-shrink: 0;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .profile-picture:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(107, 87, 68, 0.2);
         }
 
         h1 {
@@ -126,7 +156,7 @@
 
         .contact-links a:hover {
             color: #6B5744;
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.1);
         }
 
         section {
@@ -156,6 +186,11 @@
             display: flex;
             gap: 20px;
             align-items: flex-start;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateX(5px);
         }
 
         .project-image {
@@ -165,6 +200,12 @@
             object-fit: cover;
             border: 2px solid #D4C4B0;
             flex-shrink: 0;
+            transition: transform 0.4s ease, border-color 0.3s ease;
+        }
+
+        .project-item:hover .project-image {
+            transform: scale(1.1) rotate(5deg);
+            border-color: #8B7355;
         }
 
         .project-content {
@@ -198,10 +239,12 @@
             color: #8B7355;
             text-decoration: none;
             border-bottom: 1px solid #D4C4B0;
+            transition: border-color 0.3s ease, color 0.3s ease;
         }
 
-        .publication-item a:hover, .project-item a:hover {
+        .publication-item a:hover, .project-item a:hover, .bio a:hover, .item-description a:hover, .item-description-top a:hover {
             border-bottom: 1px solid #8B7355;
+            color: #6B5744;
         }
 
         footer {
@@ -225,13 +268,14 @@
             text-align: left;
             outline: none;
             font-size: 16px;
-            transition: 0.3s;
+            transition: background-color 0.3s ease, transform 0.2s ease;
             border-radius: 4px;
             margin-top: 5px;
         }
 
         .accordion-button:hover {
             background-color: #6B5744;
+            transform: translateX(3px);
         }
 
         .accordion-button.active {
@@ -244,10 +288,12 @@
             font-weight: bold;
             float: right;
             margin-left: 5px;
+            transition: transform 0.3s ease;
         }
 
         .accordion-button.active:after {
             content: "\2212";
+            transform: rotate(180deg);
         }
 
         .accordion-content {
@@ -261,6 +307,18 @@
         .accordion-content p {
             padding: 15px 0;
             line-height: 1.6;
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(to right, #8B7355, #6B5744);
+            z-index: 999;
+            transition: width 0.1s ease;
         }
 
         @media (max-width: 768px) {
@@ -304,6 +362,8 @@
     </style>
 </head>
 <body>
+    <div class="scroll-progress"></div>
+    
     <nav>
         <div class="nav-container">
             <span title="This is Frenny! A mascot character I drew in 2021 for one of my first ever web development projects... and it just stuck around as a profile logo since then."><img src="assets/frenny.jpg" alt="Frenny" class="nav-logo"></span>
@@ -325,18 +385,9 @@
                     <a href="mailto:leehw@ahlab.org" title="My Email - leehw@ahlab.org">
                         <i class="fas fa-envelope"></i>
                     </a>
-                    <!-- <a href="https://scholar.google.com/..." target="_blank" title="Google Scholar">
-                        <i class="fas fa-graduation-cap"></i>
-                    </a> -->
                     <a href="https://github.com/lhw-1" target="_blank" title="My GitHub - @lhw-1">
                         <i class="fab fa-github"></i>
                     </a>
-                    <!-- <a href="https://linkedin.com/..." target="_blank" title="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://twitter.com/..." target="_blank" title="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a> -->
                 </div>
             </div>
             <span title="This picture was taken in Stockholm, Sweden during my visit in late 2025 after UbiComp '25 was held in Espoo, Finland. Credits to Prof. Rick Glassey at KTH for helping me take this photograph :D"><img src="assets/hyungwoon.PNG" alt="Profile Picture" class="profile-picture"></span>
@@ -364,7 +415,7 @@
         <section id="research">
             <h2>Research Interests</h2>
 
-            <div class="research-item ">
+            <div class="research-item">
                 <button class="accordion-button">Cognitive Sciences, Psychology, and Education</button>
                 <div class="accordion-content">
                     <p class="item-description-top">
@@ -376,7 +427,7 @@
                 </div>
             </div>
 
-            <div class="research-item ">
+            <div class="research-item">
                 <button class="accordion-button">HCI and Cognitive Augmentation</button>
                 <div class="accordion-content">
                     <p class="item-description-top">
@@ -388,7 +439,7 @@
                 </div>
             </div>
 
-            <div class="research-item ">
+            <div class="research-item">
                 <button class="accordion-button">Machine Learning and AI</button>
                 <div class="accordion-content">
                     <p class="item-description-top">
@@ -400,7 +451,7 @@
                 </div>
             </div>
 
-            <div class="research-item ">
+            <div class="research-item">
                 <button class="accordion-button">Biosensing and Signal Processing</button>
                 <div class="accordion-content">
                     <p class="item-description-top">
@@ -424,96 +475,86 @@
                     <p class="item-description">
                         This project is in collaboration with an industry partner, and aims to build an affect recognition model with state-of-the-Arts AI architecture. The model will be integrated into various wrist-worn / HMD wearable devices for affect-aware recommendation systems. We have a <a href="#publications">workshop paper for NeurIPS '25</a> to be presented later this year!
                     </p>
-                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-2.png" alt="Project 1" class="project-image">
+                <img src="assets/project-2.png" alt="Project 2" class="project-image">
                 <div class="project-content">
                     <div class="item-title">ProctorX</div>
                     <div class="item-meta">Role: Research Engineer @ CHILL | Duration: Sept 2024 - Jul 2025</div>
                     <p class="item-description">
                         This project was in collaboration with NUS Centre for Teaching, Learning and Technology (CTLT). We built an AI-driven platform that can detect and flag the use of prohibited applications during open internet examinations. Video recordings and keyboard/mouse data are used by the platform to estimate the likelihood of prohibited applications being used - a surprisingly non-trivial task!
                     </p>
-                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-3.jpg" alt="Project 2" class="project-image">
+                <img src="assets/project-3.jpg" alt="Project 3" class="project-image">
                 <div class="project-content">
                     <div class="item-title">Acute Cognitive Stress Detection</div>
                     <div class="item-meta">Role: Final Year Student (4th Year) @ NUS | Duration: Aug 2024 - Apr 2025</div>
                     <p class="item-description">
                         This student research project focused on detection of acute cognitive stress that arises when students are working on mentally demanding tasks, especially when recalling information under pressure. Multimodal machine learning techniques were used alongside collected biosignal data (e.g. HRV, EDA, Temp) to build a binary classification model. This was a strenuous but exceptionally rewarding project, as I had to combine all that I'd learnt from both computer science and psychology - including research protocol design and data collection, as well as multimodal machine learning, fusion techniques, and signal processing. [Report available upon request]
                     </p>
-                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-4.jpg" alt="Project 1" class="project-image">
+                <img src="assets/project-4.jpg" alt="Project 4" class="project-image">
                 <div class="project-content">
                     <div class="item-title"><a href="https://chill.nus.edu.sg/about/" target="_blank">Integrated Learning and Management System (iLEMS)</a></div>
                     <div class="item-meta">Role: Research Engineer @ CHILL | Duration: Jul 2024 - Ongoing</div>
                     <p class="item-description">
                         This project was initiated under the NUS CHILL. The iLEMS system is a web-based platform that integrates both course metadata and student behavioral and cognitive state data collected during course time to analyze and present the learning and engagement levels of students over time, allowing for instructors to have a more holistic view of the classroom. The platform is still a work in progress under NUS CHILL.
                     </p>
-                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-5.png" alt="Project 1" class="project-image">
+                <img src="assets/project-5.png" alt="Project 5" class="project-image">
                 <div class="project-content">
                     <div class="item-title"><a href="https://emplity.org" target="_blank">Emplity</a></div>
-                    <div class="item-title"></div>
                     <div class="item-meta">Role: Chief Research Officer / Co-founder | Duration: Nov 2023 - Ongoing</div>
                     <p class="item-description">
                         Emplity is my third startup venture (and the first that actually took off) - we build AI-driven applications for mental health professionals in-training, such as AI Roleplay for Cognitive-behavioral Therapy (CBT) through audio / video chats, and AI review of case studies and transcripts - born out of my own pain points when I was a clinical psychology student. We are currently undergoing trials with institutes of higher learning and universities. (If this sounds interesting to you as a potential client, feel free to reach out!)
                     </p>
-                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-6.jpg" alt="Project 2" class="project-image">
+                <img src="assets/project-6.jpg" alt="Project 6" class="project-image">
                 <div class="project-content">
                     <div class="item-title">Student Program Classification</div>
                     <div class="item-meta">Role: Undergraduate Researcher (3rd Year) @ NUS | Duration: Aug 2023 - Apr 2024</div>
                     <p class="item-description">
                         This student research project focused on classifying student programs through low-level program traces extracted from abstract syntax trees (AST). Both standard machine learning models and LLMs were used to cluster programs based on these traces, and results were compared. The angle that we took was: student programs can be classified not based on paradigms or algorithms but by "algorithmic processes" - such as a recursive vs iterative process as defined by SICP, which we saw as different examples of students' ways of thinking while programming. [Report available upon request]
                     </p>
-                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-7.png" alt="Project 3" class="project-image">
+                <img src="assets/project-7.png" alt="Project 7" class="project-image">
                 <div class="project-content">
                     <div class="item-title"><a href="https://markbind.org/" target="_blank">MarkBind</a></div>
                     <div class="item-meta">Role: Senior Developer @ NUS | Duration: Jan 2023 - May 2025</div>
                     <p class="item-description">
                         MarkBind is a command-line tool that can help to generate dynamic websites from simple markdown text. Built and maintained by students of National University of Singapore (NUS). I began work on it as a junior developer in my 3rd year, and continued to work as a senior developer until graduation.
                     </p>
-                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-8.jpg" alt="Project 3" class="project-image">
+                <img src="assets/project-8.jpg" alt="Project 8" class="project-image">
                 <div class="project-content">
                     <div class="item-title"><a href="https://www.ccsgp.comp.nus.edu.sg/robotic-dog-intern" target="_blank">Robot Guide Dog</a></div>
                     <div class="item-meta">Role: Research Engineer Intern @ NUS AI Lab | Duration: May 2022 - Aug 2023</div>
                     <p class="item-description">
                         This was part of an ongoing research project to build a navigation algorithm for a robotic guide dog in unseen environments, for the purpose of guiding visually impaired used. This project specifically focused on unseen navigation and stairs climbing.
                     </p>
-                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
                 </div>
             </div>
             <div class="project-item">
-                <img src="assets/project-9.jpg" alt="Project 3" class="project-image">
+                <img src="assets/project-9.jpg" alt="Project 9" class="project-image">
                 <div class="project-content">
                     <div class="item-title"><a href="https://sourceacademy.nus.edu.sg/" target="_blank">Source Academy</a></div>
                     <div class="item-meta">Role: Senior Developer @ NUS | Duration: Aug 2021 - May 2025</div>
                     <p class="item-description">
                         Source Academy is a web-based platform for interactive learning, designed around the Structure and Interpretation of Computer Programs (SICP) textbook, and used for the CS1101S: Programming Methodology I course. Built and maintained by students of National University of Singapore (NUS). I began work on it as a junior developer in my 2nd year, and continued to work as a senior developer until graduation.
                     </p>
-                    <!-- <a href="#" target="_blank">[My Explanation of this project]</a> -->
                 </div>
             </div>
         </section>
@@ -528,33 +569,96 @@
                 <div class="accordion-content">
                     <p class="item-description-top">
                         Stress is a critical determinant of both short-term well-being and long-term health.  While wearable sensors have enabled continuous monitoring of stress through physiological signals, existing approaches that rely only on <em>current physiology</em> have shown limited success. Prior work suggests that the <em>previous night's sleep</em> is predictive of stress, yet current methods typically use only <em>coarse sleep summaries</em> (e.g., duration, resting heart rate). In this paper, we argue that <em>fine-grained sleep physiological data</em> can provide richer insights for stress detection. We collect a month-long smartwatch dataset comprising both day-time and night-time physiological signals, including detailed sleep-derived features, and train two models -- XGBoost and a custom multi-modal neural network. Our results provide initial evidence that incorporating fine-grained sleep features significantly improves stress detection, opening up several promising directions for future research.
-                        <!-- <a href="#" target="_blank">[PDF]</a> <a href="#" target="_blank">[DOI]</a> -->
                     </p>
                 </div>
             </div>
-
-            <script>
-                // Accordion functionality
-                const accordionButtons = document.querySelectorAll('.accordion-button');
-                
-                accordionButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        this.classList.toggle('active');
-                        const content = this.nextElementSibling;
-                        
-                        if (content.style.maxHeight) {
-                            content.style.maxHeight = null;
-                        } else {
-                            content.style.maxHeight = content.scrollHeight + 'px';
-                        }
-                    });
-                });
-            </script>
         </section>
 
         <footer>
             <p>© 2025 - Hyungwoon Lee. Last updated: 1 Nov 2025</p>
         </footer>
     </div>
+
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Scroll progress bar
+        gsap.to('.scroll-progress', {
+            width: '100%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: 'body',
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: 0.3
+            }
+        });
+
+        // Accordion functionality with animation
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+        
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const wasActive = this.classList.contains('active');
+                
+                // Close all other accordions
+                accordionButtons.forEach(btn => {
+                    if (btn !== this && btn.classList.contains('active')) {
+                        btn.classList.remove('active');
+                        const content = btn.nextElementSibling;
+                        gsap.to(content, {
+                            maxHeight: 0,
+                            duration: 0.3,
+                            ease: 'power2.inOut'
+                        });
+                    }
+                });
+
+                // Toggle current accordion
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                
+                if (!wasActive) {
+                    gsap.to(content, {
+                        maxHeight: content.scrollHeight,
+                        duration: 0.4,
+                        ease: 'power2.out'
+                    });
+                } else {
+                    gsap.to(content, {
+                        maxHeight: 0,
+                        duration: 0.3,
+                        ease: 'power2.inOut'
+                    });
+                }
+            });
+        });
+
+        // Smooth scroll for navigation links with proper offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - 90; // Account for fixed navbar height + some padding
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
