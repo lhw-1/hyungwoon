@@ -1,0 +1,10 @@
+.claude
+
+# Training-time artifacts not needed to serve the static site
+# (ml/attention_model_browser.json, ml/attention_model_xgb.json, and
+# ml/cursor-classifier.js are the only ml/ files actually loaded at runtime)
+ml/attention_model.pkl
+ml/eval_summary.json
+ml/train_attention_classifier.py
+attentive-cursor-dataset/
+the-attentive-cursor-dataset-master.zip

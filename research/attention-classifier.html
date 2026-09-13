@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attention Classification from Cursor Dynamics — Hyungwoon Lee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* Paper-like layout. Single column, dense, minimal colour. */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+    --text:   #111;
+    --text-2: #333;
+    --text-3: #555;
+    --border: #ccc;
+    --bg:     #fff;
+    --w:      680px;
+    --px:     24px;
+}
+html { font-size: 15px; }
+body {
+    font-family: 'Inter', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    padding: 48px var(--px) 80px;
+    max-width: var(--w);
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: underline; text-decoration-color: #aaa; text-underline-offset: 2px; }
+a:hover { text-decoration-color: var(--text); }
+
+/* ── Header ── */
+.paper-header { border-bottom: 1px solid var(--border); padding-bottom: 24px; margin-bottom: 28px; }
+.paper-title {
+    font-size: 1.45em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin-bottom: 14px;
+}
+.paper-author { font-size: 0.9em; color: var(--text-2); margin-bottom: 2px; }
+.paper-affil  { font-size: 0.85em; color: var(--text-3); margin-bottom: 14px; }
+.paper-note   { font-size: 0.82em; color: var(--text-3); font-style: italic; }
+
+/* ── Abstract ── */
+.abstract {
+    border: 1px solid var(--border);
+    padding: 16px 18px;
+    margin-bottom: 32px;
+    font-size: 0.88em;
+    line-height: 1.7;
+    color: var(--text-2);
+}
+.abstract-label {
+    font-size: 0.78em;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* ── Sections ── */
+h2 {
+    font-size: 0.88em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-3);
+    margin: 32px 0 12px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 5px;
+}
+p { font-size: 0.93em; color: var(--text-2); margin-bottom: 12px; line-height: 1.72; }
+p:last-of-type { margin-bottom: 0; }
+
+/* ── Tables ── */
+.tbl-wrap { overflow-x: auto; margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.86em; }
+thead tr { border-top: 2px solid var(--text); border-bottom: 1px solid var(--text); }
+thead th {
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85em;
+}
+tbody td { padding: 6px 10px; color: var(--text-2); border-bottom: 1px solid var(--border); }
+tbody tr:last-child td { border-bottom: 1px solid var(--text); }
+td.r { text-align: right; font-variant-numeric: tabular-nums; }
+td.best { font-weight: 600; color: var(--text); }
+caption { font-size: 0.82em; color: var(--text-3); caption-side: bottom; padding-top: 6px; text-align: left; }
+
+/* ── Confusion matrix ── */
+.cm { display: inline-table; border-collapse: collapse; font-size: 0.88em; margin: 16px 0; }
+.cm td { padding: 10px 20px; border: 1px solid var(--border); text-align: center; }
+.cm .cm-label { font-size: 0.78em; color: var(--text-3); font-weight: 500; }
+
+/* ── Back link ── */
+.back { display: block; margin-bottom: 32px; font-size: 0.85em; color: var(--text-3); }
+
+/* ── Code ── */
+code {
+    font-family: ui-monospace, 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.88em;
+    background: #f5f5f5;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 1px 4px;
+}
+.bib {
+    font-family: ui-monospace, 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.78em;
+    background: #f9f9f9;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 12px 14px;
+    color: var(--text-3);
+    line-height: 1.6;
+    margin-top: 8px;
+    overflow-x: auto;
+}
+
+@media (max-width: 600px) { body { padding: 28px 16px 60px; } }
+@media print { body { padding: 0; } .back { display: none; } }
+</style>
+</head>
+<body>
+
+<a class="back" href="../index.html">← Hyungwoon Lee</a>
+
+<div class="paper-header">
+    <h1 class="paper-title">Attention Classification from Cursor Dynamics:<br>
+    A Prototype Experiment</h1>
+    <p class="paper-author">Hyungwoon Lee</p>
+    <p class="paper-affil">MIT Media Lab</p>
+    <p class="paper-note">Personal project note, June 2026. Not peer reviewed. Documentation written with Claude AI. The classifier described here runs on this site.</p>
+</div>
+
+<div class="abstract">
+    <span class="abstract-label">Abstract</span>
+    We train three binary classifiers — logistic regression, SVM, and XGBoost — on 17 cursor-kinematic features extracted from the <a href="https://doi.org/10.3389/fnhum.2020.565664">Attentive Cursor Dataset</a> (Leiva &amp; Arapakis, 2020), a corpus of 2,714 mouse-tracking sessions collected during a crowdsourced web-advertisement attention study. The best model (XGBoost) achieves a cross-validated AUC of 0.56, which is consistent with prior work showing that handcrafted cursor features are weak predictors of self-reported attention. We deploy the model client-side on this portfolio site as an illustrative real-time inference demo. The exercise is honest about its limitations: the domain differs from the training data, the feature set is minimal, and the classifier is not intended as a reliable measurement instrument.
+</div>
+
+<h2>1. Motivation</h2>
+<p>
+This is a hobby experiment. The site has a signal strip at the bottom of each page that visualises cursor activity in real time, and the natural question was whether the same behavioural data could support a coarse label — something like "this person is reading carefully" versus "they are scanning". The Attentive Cursor Dataset provides a reasonably sized corpus with labelled cursor sessions, so it offered a convenient starting point.
+</p>
+<p>
+The goal was not to produce a production-quality attention detector. It was to (a) practise the full pipeline from raw behavioural data to a deployed browser model, (b) understand where cursor-based attention inference actually sits relative to the literature, and (c) end up with something honest that can sit on the site without overclaiming what it does.
+</p>
+
+<h2>2. Dataset</h2>
+<p>
+The <a href="https://doi.org/10.3389/fnhum.2020.565664">Attentive Cursor Dataset</a> (Leiva &amp; Arapakis, Front. Hum. Neurosci., 2020) contains mouse-tracking logs from a crowdsourced study where participants browsed search engine result pages (SERPs) containing display advertisements. Ground truth is a self-reported attention score on a 1–5 Likert scale, with 1 = no attention.
+</p>
+<p>
+We binarise the label at threshold 3: attention ≥ 3 is mapped to class 1 (attentive), attention &lt; 3 to class 0 (not attentive). After dropping sessions with missing or near-empty logs, the working dataset consists of 2,714 sessions: 1,985 attentive (73.1%) and 729 not attentive (26.9%). The class imbalance is substantial and is handled by class-balanced sample weighting during training.
+</p>
+<div class="tbl-wrap">
+<table>
+    <caption>Table 1. Dataset summary.</caption>
+    <thead><tr><th>Property</th><th class="r">Value</th></tr></thead>
+    <tbody>
+        <tr><td>Sessions (after filtering)</td><td class="r">2,714</td></tr>
+        <tr><td>Sessions dropped (missing logs)</td><td class="r">195</td></tr>
+        <tr><td>Attentive (label 1)</td><td class="r">1,985 (73.1%)</td></tr>
+        <tr><td>Not attentive (label 0)</td><td class="r">729 (26.9%)</td></tr>
+        <tr><td>Median events per session</td><td class="r">29</td></tr>
+        <tr><td>Range of events per session</td><td class="r">3 – 397</td></tr>
+    </tbody>
+</table>
+</div>
+
+<h2>3. Features</h2>
+<p>
+We extract 17 scalar features from the sequence of <code>mousemove</code> events in each session. These are chosen because they are computable from a raw <code>(timestamp, x, y)</code> sequence with no additional data, which means the same computation can run in real time in a browser. No temporal or sequence models are used; all features are summary statistics over the session window.
+</p>
+<div class="tbl-wrap">
+<table>
+    <caption>Table 2. Extracted features.</caption>
+    <thead><tr><th>Feature</th><th>Description</th></tr></thead>
+    <tbody>
+        <tr><td><code>n_moves</code></td><td>Total number of mousemove events</td></tr>
+        <tr><td><code>duration_ms</code></td><td>Session length (ms)</td></tr>
+        <tr><td><code>total_dist</code></td><td>Total cursor path length (px)</td></tr>
+        <tr><td><code>mean_vel</code></td><td>Mean cursor speed (px/ms)</td></tr>
+        <tr><td><code>std_vel</code></td><td>Standard deviation of speed</td></tr>
+        <tr><td><code>max_vel</code></td><td>Peak speed</td></tr>
+        <tr><td><code>median_vel</code></td><td>Median speed</td></tr>
+        <tr><td><code>mean_angle_diff</code></td><td>Mean direction change between consecutive events (rad)</td></tr>
+        <tr><td><code>dir_changes</code></td><td>Count of direction changes exceeding 45°</td></tr>
+        <tr><td><code>n_pauses</code></td><td>Count of intervals with speed &lt; 0.1 px/ms</td></tr>
+        <tr><td><code>pause_ratio</code></td><td>Fraction of intervals counted as pauses</td></tr>
+        <tr><td><code>x_range</code></td><td>Horizontal extent of cursor path (px)</td></tr>
+        <tr><td><code>y_range</code></td><td>Vertical extent of cursor path (px)</td></tr>
+        <tr><td><code>bbox_area</code></td><td>Bounding box area (x_range × y_range)</td></tr>
+        <tr><td><code>std_x</code></td><td>Standard deviation of x positions</td></tr>
+        <tr><td><code>std_y</code></td><td>Standard deviation of y positions</td></tr>
+        <tr><td><code>n_clicks</code></td><td>Total click count</td></tr>
+    </tbody>
+</table>
+</div>
+
+<h2>4. Method</h2>
+<p>
+Three classifiers are compared: logistic regression, SVM with an RBF kernel, and XGBoost. All are wrapped in a standardisation pipeline (zero mean, unit variance). Logistic regression and SVM use <code>class_weight='balanced'</code>; XGBoost uses <code>scale_pos_weight</code> set to the inverse class ratio (2.72). Hyperparameters are selected by grid search on 5-fold stratified cross-validation with AUC as the criterion.
+</p>
+<div class="tbl-wrap">
+<table>
+    <caption>Table 3. Hyperparameter search grids.</caption>
+    <thead><tr><th>Model</th><th>Grid</th></tr></thead>
+    <tbody>
+        <tr><td>Logistic Regression</td><td>C ∈ {0.01, 0.1, 1, 10}; penalty = L2</td></tr>
+        <tr><td>SVM (RBF)</td><td>C ∈ {0.1, 1, 10}; γ ∈ {scale, auto}</td></tr>
+        <tr><td>XGBoost</td><td>depth ∈ {3, 4, 6}; estimators ∈ {100, 200}; lr ∈ {0.05, 0.1}</td></tr>
+    </tbody>
+</table>
+</div>
+
+<h2>5. Results</h2>
+<p>
+Table 4 shows cross-validated performance. All three models achieve AUC close to 0.55, which is modestly above chance but weak in absolute terms. This is consistent with prior findings: Leiva &amp; Arapakis (2020) report similar AUC values for summary-statistic approaches on the same dataset, with substantial improvements only when using deep sequence representations of the full cursor trajectory.
+</p>
+<div class="tbl-wrap">
+<table>
+    <caption>Table 4. 5-fold stratified cross-validation (mean ± std).</caption>
+    <thead><tr><th>Model</th><th class="r">AUC</th><th class="r">F1</th><th class="r">Accuracy</th><th class="r">Avg. Prec.</th></tr></thead>
+    <tbody>
+        <tr><td class="best">XGBoost</td><td class="r best">0.559 ± 0.016</td><td class="r">0.741 ± 0.010</td><td class="r">0.631 ± 0.015</td><td class="r">0.753 ± 0.011</td></tr>
+        <tr><td>Logistic Regression</td><td class="r">0.554 ± 0.021</td><td class="r">0.691 ± 0.014</td><td class="r">0.583 ± 0.017</td><td class="r">0.762 ± 0.020</td></tr>
+        <tr><td>SVM (RBF)</td><td class="r">0.550 ± 0.034</td><td class="r">0.724 ± 0.021</td><td class="r">0.612 ± 0.024</td><td class="r">0.762 ± 0.022</td></tr>
+    </tbody>
+</table>
+</div>
+<p>
+Table 5 shows the classification report on a held-out 20% split (n = 543) for the best model (XGBoost, tuned). Precision on the minority class (not attentive) is 0.30, indicating substantial false positives even with class balancing. The model predominantly assigns the majority class.
+</p>
+<div class="tbl-wrap">
+<table>
+    <caption>Table 5. Held-out test set performance (n = 543). AUC = 0.564.</caption>
+    <thead><tr><th>Class</th><th class="r">Precision</th><th class="r">Recall</th><th class="r">F1</th><th class="r">Support</th></tr></thead>
+    <tbody>
+        <tr><td>Not attentive</td><td class="r">0.30</td><td class="r">0.38</td><td class="r">0.33</td><td class="r">146</td></tr>
+        <tr><td>Attentive</td><td class="r">0.75</td><td class="r">0.66</td><td class="r">0.70</td><td class="r">397</td></tr>
+        <tr><td>Macro avg</td><td class="r">0.52</td><td class="r">0.52</td><td class="r">0.52</td><td class="r">543</td></tr>
+    </tbody>
+</table>
+</div>
+<p>Confusion matrix (held-out, n = 543):</p>
+<table class="cm">
+    <tbody>
+        <tr>
+            <td class="cm-label"></td>
+            <td class="cm-label">Pred: Not att.</td>
+            <td class="cm-label">Pred: Att.</td>
+        </tr>
+        <tr>
+            <td class="cm-label">True: Not att.</td>
+            <td>56</td>
+            <td>90</td>
+        </tr>
+        <tr>
+            <td class="cm-label">True: Att.</td>
+            <td>133</td>
+            <td>264</td>
+        </tr>
+    </tbody>
+</table>
+<p style="margin-top:10px;">
+The top-ranked features by XGBoost gain are <code>std_y</code>, <code>y_range</code>, <code>total_dist</code>, <code>max_vel</code>, and <code>duration_ms</code>. The dominance of vertical-extent features may reflect that attentive SERP sessions involve more deliberate vertical scanning of the page.
+</p>
+
+<h2>6. Deployment</h2>
+<p>
+The XGBoost model (100 trees, max depth 3, lr = 0.05) is exported as a tree dump in JSON format and loaded client-side by <a href="../ml/cursor-classifier.js">cursor-classifier.js</a>. The inference pipeline standardises features using training-set statistics, traverses all trees recursively, applies a sigmoid to the summed leaf values, and produces a probability. At 8-second intervals, the label is updated to one of three states based on fixed probability thresholds: <em>focused</em> (P ≥ 0.60), <em>engaged</em> (0.47 ≤ P &lt; 0.60), or <em>scanning</em> (P &lt; 0.47). Model size is approximately 124 KB. No data is sent to any server.
+</p>
+
+<h2>7. Limitations</h2>
+<p>
+The results are weak. AUC of 0.56 means the classifier is doing very little beyond guessing the majority class more often, which the class-balanced training partially corrects for. Several compounding problems make it unlikely that a substantially better result is achievable with this feature set alone.
+</p>
+<p>
+<em>Domain mismatch.</em> The training data comes from SERP browsing under a specific crowdsourcing protocol; a personal portfolio site differs in pace, layout, and task. Cursor behaviour that was predictive of ad attention may not transfer to engagement with academic content. Whether the model generalises to this site at all is unknown.
+</p>
+<p>
+<em>Label validity.</em> Self-reported attention to a web advertisement, collected post-hoc on a 5-point scale by crowdsourced workers, is a noisy ground truth. The label threshold (attention ≥ 3) is an arbitrary cut that conflates moderate and high attention.
+</p>
+<p>
+<em>Feature coverage.</em> Summary statistics over a short session lose temporal structure. Prior work (Arapakis &amp; Leiva, SIGIR 2020) demonstrates that deep representations of cursor trajectories substantially outperform handcrafted features. The 17 features here omit potentially informative signals such as reading pauses (hover dwell time), scroll velocity, and section-level position.
+</p>
+<p>
+<em>Ground truth for this site.</em> There is no labelled cursor data from this site, so the model is applied out of distribution. A proper calibration on this domain would require self-report labels from actual visitors, which is impractical for a personal page.
+</p>
+
+<h2>References</h2>
+<p>
+Leiva, L. A., &amp; Arapakis, I. (2020). The Attentive Cursor Dataset. <em>Frontiers in Human Neuroscience, 14</em>. <a href="https://doi.org/10.3389/fnhum.2020.565664">doi:10.3389/fnhum.2020.565664</a>
+</p>
+<p>
+Arapakis, I., &amp; Leiva, L. A. (2020). Learning efficient representations of mouse movements to predict user attention. <em>Proc. SIGIR 2020</em>.
+</p>
+
+</body>
+</html>

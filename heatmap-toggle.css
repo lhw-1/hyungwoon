@@ -1,0 +1,54 @@
+/* ── Cursor Heatmap Toggle (prototype, removable) ──────────────────────────────
+   Self-contained feature. To remove entirely: delete this file,
+   heatmap-toggle.js, and (in index.html) the <button id="heatmap-toggle">,
+   the <canvas id="heatmap-canvas">, the <link> to this stylesheet, and the
+   <script src="./heatmap-toggle.js">. */
+
+#heatmap-toggle {
+    position: fixed;
+    top: calc(var(--nav-h) + 12px);
+    right: 16px;
+    z-index: 96;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-family: inherit;
+    font-size: 0.78em;
+    font-weight: 500;
+    color: var(--text-3);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: color 0.15s, border-color 0.15s;
+}
+
+#heatmap-toggle:hover {
+    color: var(--text);
+    border-color: var(--text-3);
+}
+
+#heatmap-toggle[aria-pressed="true"] {
+    color: #2563eb;
+    border-color: #2563eb;
+}
+
+#heatmap-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 95;
+    pointer-events: none;
+    display: none;
+    opacity: 0.75;
+}
+
+#heatmap-canvas.active {
+    display: block;
+}
+
+@media print {
+    #heatmap-toggle,
+    #heatmap-canvas {
+        display: none;
+    }
+}
