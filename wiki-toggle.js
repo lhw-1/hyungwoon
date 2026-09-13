@@ -7,9 +7,10 @@
 //      concepts, or an official project page for things (like specific ML
 //      models) that don't have their own Wikipedia article. Repeats are
 //      intentional: every "HCI" on the page gets its own link.
-//   2. Reveals a "Random Wikipedia Page" link below the toggle button —
-//      a plain link to Special:Random, which redirects server-side, so no
-//      fetch is needed for it.
+//   2. Reveals a purple hint line ("Click on the purple links...") and,
+//      below it, a "...Or try a random topic instead" link — a plain link
+//      to Special:Random, which redirects server-side, so no fetch is
+//      needed for it.
 //   3. Hovering (or focusing) any of the new links shows a small popover
 //      with a title and description. For Wikipedia links this is fetched
 //      live from Wikipedia's REST summary API and cached after the first
@@ -37,6 +38,7 @@
     'use strict';
 
     var btn        = document.getElementById('wiki-toggle');
+    var hint       = document.getElementById('wiki-hint');
     var randomLink = document.getElementById('wiki-random-link');
     if (!btn) return;
 
@@ -339,6 +341,7 @@
     function activate() {
         active = true;
         btn.setAttribute('aria-pressed', 'true');
+        if (hint) hint.hidden = false;
         if (randomLink) randomLink.hidden = false;
 
         var els = document.querySelectorAll(SCAN_SELECTORS);
@@ -355,6 +358,7 @@
     function deactivate() {
         active = false;
         btn.setAttribute('aria-pressed', 'false');
+        if (hint) hint.hidden = true;
         if (randomLink) randomLink.hidden = true;
         hidePopover();
         snapshots.forEach(function (s) { s.el.innerHTML = s.html; });

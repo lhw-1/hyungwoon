@@ -39,6 +39,12 @@
     border-color: #7c3aed;
 }
 
+#wiki-hint {
+    font-size: 0.74em;
+    color: #7c3aed;
+    padding-left: 14px;
+}
+
 #wiki-random-link {
     font-size: 0.74em;
     color: #7c3aed;
