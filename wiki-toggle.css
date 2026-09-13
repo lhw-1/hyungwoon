@@ -56,6 +56,15 @@
     text-decoration: underline;
 }
 
+/* New-tab indicator — every link this feature opens targets _blank */
+#wiki-random-link::after,
+a.wiki-link::after {
+    content: "\2197";
+    display: inline-block;
+    margin-left: 2px;
+    text-decoration: none;
+}
+
 /* Links created inside page text while the mode is active */
 a.wiki-link {
     color: #7c3aed;
