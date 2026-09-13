@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./project.css">
+    <link rel="stylesheet" href="../wiki-toggle.css"> <!-- removable: wikipedia mode feature -->
 </head>
 <body>
 
@@ -18,6 +19,12 @@
             <span class="nav-section">Projects</span>
         </div>
     </nav>
+
+    <!-- removable: wikipedia mode feature -->
+    <div id="wiki-panel">
+        <button id="wiki-toggle" type="button" aria-pressed="false" title="Turn key terms on this page into Wikipedia (or official-source) links — hover one for a quick preview.">Wanna learn something new instead?</button>
+        <a id="wiki-random-link" href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" rel="noopener" hidden>Random Wikipedia Page &#8599;</a>
+    </div>
 
     <main id="proj-main"></main>
 
@@ -30,6 +37,7 @@
 
     <script src="../content.js"></script>
     <script src="./project-render.js"></script>
+    <script src="../wiki-toggle.js"></script> <!-- removable: wikipedia mode feature -->
 
 </body>
 </html>

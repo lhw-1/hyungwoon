@@ -1,0 +1,103 @@
+/* ── "Wanna Learn Something New?" Wikipedia Mode (prototype, removable) ───────
+   Self-contained feature. To remove entirely: delete this file,
+   wiki-toggle.js, and (in index.html) the <div id="wiki-panel">...</div>
+   block, the <link> to this stylesheet, and the <script src="./wiki-toggle.js">. */
+
+#wiki-panel {
+    position: fixed;
+    top: calc(var(--nav-h) + 12px);
+    left: 16px;
+    z-index: 96;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    max-width: calc(50vw - 24px);
+}
+
+#wiki-toggle {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-family: inherit;
+    font-size: 0.78em;
+    font-weight: 500;
+    color: var(--text-3);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: color 0.15s, border-color 0.15s;
+}
+
+#wiki-toggle:hover {
+    color: var(--text);
+    border-color: var(--text-3);
+}
+
+#wiki-toggle[aria-pressed="true"] {
+    color: #7c3aed;
+    border-color: #7c3aed;
+}
+
+#wiki-random-link {
+    font-size: 0.74em;
+    color: #7c3aed;
+    text-decoration: none;
+    padding-left: 14px;
+}
+
+#wiki-random-link:hover {
+    text-decoration: underline;
+}
+
+/* Links created inside page text while the mode is active */
+a.wiki-link {
+    color: #7c3aed;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+}
+
+a.wiki-link:hover,
+a.wiki-link:focus-visible {
+    text-decoration-style: solid;
+}
+
+/* Hover/focus preview popover */
+#wiki-popover {
+    position: fixed;
+    z-index: 200;
+    max-width: 280px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+    pointer-events: none;
+    font-size: 0.8em;
+    line-height: 1.45;
+}
+
+.wiki-pop-title {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+}
+
+.wiki-pop-body {
+    color: var(--text-3);
+}
+
+@media print {
+    #wiki-panel,
+    #wiki-popover {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    #wiki-panel {
+        top: calc(var(--nav-h) + 8px);
+        left: 8px;
+    }
+}

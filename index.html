@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="./heatmap-toggle.css"> <!-- removable: cursor heatmap feature -->
+    <link rel="stylesheet" href="./wiki-toggle.css"> <!-- removable: wikipedia mode feature -->
 </head>
 <body>
 
@@ -28,6 +29,12 @@
     <!-- removable: cursor heatmap feature -->
     <button id="heatmap-toggle" type="button" aria-pressed="false" title="Toggle a heatmap of your cursor movement since the page loaded. Reloading resets it.">Cursor Heatmap</button>
     <canvas id="heatmap-canvas" aria-hidden="true"></canvas>
+
+    <!-- removable: wikipedia mode feature -->
+    <div id="wiki-panel">
+        <button id="wiki-toggle" type="button" aria-pressed="false" title="Turn key terms on this page into Wikipedia links — hover one for a quick preview.">Wanna learn something new instead?</button>
+        <a id="wiki-random-link" href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" rel="noopener" hidden>Random Wikipedia Page &#8599;</a>
+    </div>
 
     <main>
 
@@ -91,6 +98,7 @@
     <script src="./content.js"></script>
     <script src="./site-init.js"></script>
     <script src="./heatmap-toggle.js"></script> <!-- removable: cursor heatmap feature -->
+    <script src="./wiki-toggle.js"></script> <!-- removable: wikipedia mode feature -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
     <script src="./adaptive-signal.js"></script>
     <script src="./ml/cursor-classifier.js"></script>

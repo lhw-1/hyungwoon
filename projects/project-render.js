@@ -40,7 +40,7 @@
 
     // Overview
     if (d.overview) {
-        html += '<div class="content-section"><h2>Overview</h2>' + d.overview + '</div>';
+        html += '<div class="content-section proj-overview"><h2>Overview</h2>' + d.overview + '</div>';
     }
 
     // Timeline
