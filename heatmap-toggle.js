@@ -23,16 +23,21 @@
 // total history, so it stays smooth no matter how long the heatmap has been
 // running.
 //
-// TO REMOVE: delete this file, heatmap-toggle.css, and (in index.html) the
-// <button id="heatmap-toggle">, the <canvas id="heatmap-canvas">, the
-// <link> to the stylesheet, and the <script> tag for this file.
+// Exposes window.HeatmapFX.start()/stop() rather than owning the toggle
+// button itself, since the button now switches between this and the
+// ink-brush effect (brush-fx.js) — see cursor-toggle.js, which owns the
+// click handler for both.
+//
+// TO REMOVE: delete this file, heatmap-toggle.css, cursor-toggle.js,
+// brush-fx.js/.css, and (in index.html) the <button id="heatmap-toggle">,
+// the <canvas id="heatmap-canvas">/<canvas id="brush-canvas">, the
+// relevant <link>s, and the relevant <script> tags.
 
 (function () {
     'use strict';
 
-    var btn    = document.getElementById('heatmap-toggle');
     var canvas = document.getElementById('heatmap-canvas');
-    if (!btn || !canvas) return;
+    if (!canvas) return;
 
     var ctx = canvas.getContext('2d');
 
@@ -163,7 +168,7 @@
         ctx.putImageData(imgData, rect.x, rect.y);
     }
 
-    // ── Toggle + animation loop ────────────────────────────────────────────
+    // ── Start / stop ─────────────────────────────────────────────────────────
 
     var active = false;
     var rafId  = null;
@@ -176,19 +181,21 @@
         rafId = requestAnimationFrame(loop);
     }
 
-    function setActive(on) {
-        active = on;
-        btn.setAttribute('aria-pressed', String(on));
-        canvas.classList.toggle('active', on);
-        if (on) {
-            loop();
-        } else if (rafId) {
+    function start() {
+        if (active) return;
+        active = true;
+        canvas.classList.add('active');
+        loop();
+    }
+
+    function stop() {
+        active = false;
+        canvas.classList.remove('active');
+        if (rafId) {
             cancelAnimationFrame(rafId);
             rafId = null;
         }
     }
 
-    btn.addEventListener('click', function () {
-        setActive(!active);
-    });
+    window.HeatmapFX = { start: start, stop: stop };
 }());

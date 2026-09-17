@@ -1,0 +1,24 @@
+/* ── Ink-brush cursor effect (prototype, removable) ────────────────────────
+   Self-contained feature. To remove entirely: see the header comment in
+   heatmap-toggle.js. */
+
+#brush-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 95;
+    pointer-events: none;
+    display: none;
+}
+
+#brush-canvas.active {
+    display: block;
+}
+
+@media print {
+    #brush-canvas {
+        display: none;
+    }
+}

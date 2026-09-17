@@ -1,0 +1,42 @@
+/* ── Random Fact button (prototype, removable) ─────────────────────────────
+   Self-contained feature, sits inside #wiki-panel below #wiki-toggle. To
+   remove entirely: see the header comment in fact-fx.js. */
+
+#fact-toggle {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-family: inherit;
+    font-size: 0.78em;
+    font-weight: 500;
+    color: var(--text-3);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: color 0.15s, border-color 0.15s;
+}
+
+#fact-toggle:hover {
+    color: var(--text);
+    border-color: var(--text-3);
+}
+
+#fact-box {
+    max-width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.8em;
+    color: var(--text-2);
+    line-height: 1.5;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+@media print {
+    #fact-toggle,
+    #fact-box {
+        display: none;
+    }
+}
