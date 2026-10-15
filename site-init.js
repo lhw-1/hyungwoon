@@ -56,20 +56,16 @@
         aboutContent.innerHTML = SITE.about.paragraphs.map(function (p) { return '<p>' + p + '</p>'; }).join('');
     }
 
-    var asideEl = byId('about-aside');
-    if (asideEl && SITE.about.aside && SITE.about.aside.length) {
-        var asideItems = Array.isArray(SITE.about.aside) ? SITE.about.aside : [SITE.about.aside];
-        var asideHtml = asideItems.map(function (p) { return '<p>' + p + '</p>'; }).join('');
-        asideEl.innerHTML = '<details class="about-aside"><summary>More about me</summary>' + asideHtml + '</details>';
-    }
+    // ── More about me ─────────────────────────────────────────────────────────
+    // Research-area dropdowns, followed by the about aside as one more dropdown.
 
-    // ── Research ──────────────────────────────────────────────────────────────
-
-    setHTML('research-lead', SITE.research.lead);
-
-    var areasEl = byId('research-areas');
-    if (areasEl) {
-        areasEl.innerHTML = SITE.research.areas.map(function (area) {
+    var moreEl = byId('more-list');
+    if (moreEl) {
+        var dropdowns = SITE.research.areas.slice();
+        if (SITE.about.aside && SITE.about.aside.length) {
+            dropdowns.push({ title: 'Hobbies and Interests', text: SITE.about.aside });
+        }
+        moreEl.innerHTML = dropdowns.map(function (area) {
             var paragraphs = Array.isArray(area.text) ? area.text : [area.text];
             var body = paragraphs.map(function (p) { return '<p>' + p + '</p>'; }).join('');
             return '<details class="research-area">' +

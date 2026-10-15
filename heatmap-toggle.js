@@ -24,14 +24,12 @@
 // running.
 //
 // Exposes window.HeatmapFX.start()/stop() rather than owning the toggle
-// button itself, since the button now switches between this and the
-// ink-brush effect (brush-fx.js) — see cursor-toggle.js, which owns the
-// click handler for both.
+// button itself — see cursor-toggle.js, which owns the click handler.
 //
-// TO REMOVE: delete this file, heatmap-toggle.css, cursor-toggle.js,
-// brush-fx.js/.css, and (in index.html) the <button id="heatmap-toggle">,
-// the <canvas id="heatmap-canvas">/<canvas id="brush-canvas">, the
-// relevant <link>s, and the relevant <script> tags.
+// TO REMOVE: delete this file, heatmap-toggle.css, cursor-toggle.js, and
+// (in index.html) the <button id="heatmap-toggle">, the
+// <canvas id="heatmap-canvas">, the relevant <link>, and the relevant
+// <script> tags.
 
 (function () {
     'use strict';

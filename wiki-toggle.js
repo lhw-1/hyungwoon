@@ -144,7 +144,7 @@
         { term: 'respiratory rate',                   wiki: 'Respiratory rate' },
         { term: 'biofeedback',                        wiki: 'Biofeedback' },
 
-        // About aside ("more about me")
+        // About aside ("Hobbies and Interests" in More about me)
         { term: 'music',                              wiki: 'Music' },
         { term: 'video game music',                   wiki: 'Video game music' },
         { term: 'video games',                        wiki: 'Video game' },
@@ -218,9 +218,7 @@
     var SCAN_SELECTORS = [
         // index.html
         '#about-content p',
-        '#about-aside p',
-        '#research-lead',
-        '#research-areas .research-area > p',
+        '#more-list .research-area > p',
         '#project-list .project-desc',
         '#pub-list .pub-abstract p',
         // projects/project.html

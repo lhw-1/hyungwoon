@@ -248,58 +248,10 @@ h2 {
     font-weight: 600;
 }
 
-.about-aside {
-    border-top: 1px solid var(--border-2);
-    padding-top: 16px;
-    margin-top: 28px;
-}
-
-.about-aside > summary {
-    cursor: pointer;
-    font-size: 0.91em;
-    font-weight: 500;
-    color: var(--text-3);
-    list-style: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    user-select: none;
-    transition: color 0.15s;
-}
-
-.about-aside > summary::-webkit-details-marker {
-    display: none;
-}
-
-.about-aside > summary::before {
-    content: '[+]';
-    font-family: ui-monospace, 'SF Mono', 'Fira Code', monospace;
-    font-size: 0.9em;
-    color: var(--text-4);
-}
-
-.about-aside[open] > summary::before {
-    content: '[-]';
-}
-
-.about-aside > summary:hover {
-    color: var(--text-2);
-}
-
-.about-aside > p {
-    font-size: 0.91em;
-    color: var(--text-3);
-    line-height: 1.65;
-    margin-top: 12px;
-}
-
 /* ── Research ── */
 
-.section-lead {
-    font-size: 0.96em;
-    color: var(--text-2);
-    margin-bottom: 36px;
-    line-height: 1.75;
+#publications {
+    scroll-margin-top: calc(var(--nav-h) + 20px);
 }
 
 .research-areas {
