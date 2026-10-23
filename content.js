@@ -25,7 +25,7 @@ var SITE = {
         email:  'hyung98 [at] media [dot] mit [dot] edu',
         github: 'https://github.com/lhw-1',
         scholar: 'https://scholar.google.com/citations?user=o_fP0WQAAAAJ&hl=en',
-        medialab:  'https://www.media.mit.edu/groups/fluid-interfaces/group-members/',
+        medialab:  'https://www.media.mit.edu/people/hyung98/overview/',
         ahlab:  'https://ahlab.org/people/hyung-woon-lee/',
         cv:     'assets/cv.pdf',
         photo:  'assets/hyungwoon.jpg',
